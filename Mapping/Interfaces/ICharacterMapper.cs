@@ -20,5 +20,6 @@ namespace DnDProject.Backend.Mapping.Interfaces
 
         //Update
         void mapCharacterVMToExistingEntity(CharacterVM vm, Character m);
+        void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character record);
     }
 }

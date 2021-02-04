@@ -61,5 +61,16 @@ namespace DnDProject.Backend.Mapping.Implementations
             mapper.Map<CharacterVM, Character>(vm, m);
 
         }
+        public void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character record)
+        {
+            var UpdatedCharacter_Over_Entity = new MapperConfiguration(
+                cfg => cfg.CreateMap<Character, Character>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
+            );
+
+            var mapper = UpdatedCharacter_Over_Entity.CreateMapper();
+
+            mapper.Map<Character, Character>(updatedCharacter, record);
+        }
     }
 }

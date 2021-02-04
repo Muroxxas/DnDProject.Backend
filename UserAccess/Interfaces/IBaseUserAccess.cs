@@ -18,6 +18,9 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         IsProficient GetProficiencyRecord(Guid Character_id);
         void UpdateProficiencyRecord(IsProficient updatedRecord);
 
+        void AddHealthRecord(Health health);
+        Health GetHealthRecord(Guid Character_id);
+        void UpdateHealthRecord(Health updatedRecord);
 
         void SaveChanges();
         void SaveChangesAsync();

@@ -13,5 +13,6 @@ namespace DnDProject.Backend.Contexts
     {
         public virtual DbSet<Character> Characters { get; set; }
         public virtual DbSet<IsProficient> Proficiencies { get; set; }
+        public virtual DbSet<Health> HealthRecords { get; set; }
     }
 }

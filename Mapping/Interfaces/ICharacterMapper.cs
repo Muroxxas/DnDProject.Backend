@@ -20,9 +20,9 @@ namespace DnDProject.Backend.Mapping.Interfaces
 
         //Update
         void mapCharacterVMToExistingEntity(CharacterVM vm, Character m);
-        void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character record);
-        void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient record);
-        void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health record);
+        void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character entity);
+        void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient entity);
+        void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health entity);
 
     }
 }

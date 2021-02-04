@@ -11,7 +11,6 @@ namespace DnDProject.Backend.Repository
     {
         void AddCharacter(Character character);
         Character GetCharacter(Guid Character_id);
-
         void UpdateCharacter(Character updatedRecord);
         void DeleteCharacter(Guid Character_id);
 
@@ -20,6 +19,12 @@ namespace DnDProject.Backend.Repository
         void AddProficiencyRecord(IsProficient proficiencies);
         IsProficient GetProficiencyRecord(Guid Character_id);
         void UpdateProficiencyRecord(IsProficient proficiencies);
+
+        void AddHealthRecord(Health health);
+        Health GetHealthRecord(Guid Character_id);
+        void UpdateHealthRecord(Health updatedRecord);
+
+
         void SaveChanges();
         void SaveChangesAsync();
     }

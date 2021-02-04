@@ -44,7 +44,19 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             _dataRepository.UpdateProficiencyRecord(updatedRecord);
 
+        }
 
+        public void AddHealthRecord(Health health)
+        {
+            _dataRepository.AddHealthRecord(health);
+        }
+        public Health GetHealthRecord(Guid Character_id)
+        {
+            return _dataRepository.GetHealthRecord(Character_id);
+        }
+        public void UpdateHealthRecord(Health updatedRecord)
+        {
+            _dataRepository.UpdateHealthRecord(updatedRecord);
         }
 
 

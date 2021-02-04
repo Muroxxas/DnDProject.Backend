@@ -28,13 +28,13 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public void UpdateCharacter(Character updatedRecord)
         {
-            Character foundCharacter = GetCharacter(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedCharacterOverEntity(updatedRecord, foundCharacter);
+            Character entity = GetCharacter(updatedRecord.Character_id);
+            _characterMapper.mapUpdatedCharacterOverEntity(updatedRecord, entity);
         }
         public void DeleteCharacter(Guid Character_id)
         {
-            Character foundCharacter = GetCharacter(Character_id);
-            _characterContext.Characters.Remove(foundCharacter);
+            Character entity = GetCharacter(Character_id);
+            _characterContext.Characters.Remove(entity);
         }
         public void AddProficiencyRecord(IsProficient proficiencies)
         {
@@ -42,15 +42,27 @@ namespace DnDProject.Backend.Repository.Implementations
         }
         public IsProficient GetProficiencyRecord(Guid Character_id)
         {
-            IsProficient foundRecord = _characterContext.Proficiencies.Find(Character_id);
-            return foundRecord;
+            IsProficient entity = _characterContext.Proficiencies.Find(Character_id);
+            return entity;
         }
-        public void UpdateProficiencyRecord(IsProficient proficiencies)
+        public void UpdateProficiencyRecord(IsProficient updatedRecord)
         {
-            IsProficient foundRecord = GetProficiencyRecord(proficiencies.Character_id);
-            _characterMapper.mapUpdatedProficiencyRecordOverEntity(proficiencies, foundRecord);
+            IsProficient entity = GetProficiencyRecord(updatedRecord.Character_id);
+            _characterMapper.mapUpdatedProficiencyRecordOverEntity(updatedRecord, entity);
         }
-
+        public void AddHealthRecord(Health health)
+        {
+            _characterContext.HealthRecords.Add(health);
+        }
+        public Health GetHealthRecord(Guid Character_id)
+        {
+            return _characterContext.HealthRecords.Find(Character_id);
+        }
+        public void UpdateHealthRecord(Health updatedRecord)
+        {
+            Health entity = _characterContext.HealthRecords.Find(updatedRecord.Character_id);
+            _characterMapper.mapUpdatedHealthRecordOverEntity(updatedRecord, entity);
+        }
 
         public void SaveChanges()
         {

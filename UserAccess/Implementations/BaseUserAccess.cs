@@ -59,6 +59,19 @@ namespace DnDProject.Backend.UserAccess.Implementations
             _dataRepository.UpdateHealthRecord(updatedRecord);
         }
 
+        public void AddStatsRecord(Stats stats)
+        {
+            _dataRepository.AddStatsRecord(stats);
+        }
+
+        public Stats GetStatsRecord(Guid Character_id)
+        {
+            return _dataRepository.GetStatsRecord(Character_id);
+        }
+        public void UpdateStatsRecord(Stats updatedRecord)
+        {
+            _dataRepository.UpdateStatsRecord(updatedRecord);
+        }
 
         public void SaveChanges()
         {

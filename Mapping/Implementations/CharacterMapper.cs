@@ -61,28 +61,20 @@ namespace DnDProject.Backend.Mapping.Implementations
             mapper.Map<CharacterVM, Character>(vm, m);
 
         }
-        public void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character record)
+        public void mapUpdatedCharacterOverEntity(Character updatedRecord, Character entity)
         {
-            var UpdatedCharacter_Over_Entity = new MapperConfiguration(
-                cfg => cfg.CreateMap<Character, Character>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
-            );
-
-            var mapper = UpdatedCharacter_Over_Entity.CreateMapper();
-
-            mapper.Map<Character, Character>(updatedCharacter, record);
+            UpdateModelMapper<Character> mapper = new UpdateModelMapper<Character>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
         }
-        public void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient record)
+        public void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient entity)
         {
-            var UpdatedProficiencyRecord_OverOEntity = new MapperConfiguration(
-                cfg => cfg.CreateMap<IsProficient, IsProficient>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
-                );
-
-            var mapper = UpdatedProficiencyRecord_OverOEntity.CreateMapper();
-
-            mapper.Map<IsProficient, IsProficient>(updatedRecord, record);
+            UpdateModelMapper<IsProficient> mapper = new UpdateModelMapper<IsProficient>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
         }
-
+        public void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health entity)
+        {
+            UpdateModelMapper<Health> mapper = new UpdateModelMapper<Health>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
+        }
     }
 }

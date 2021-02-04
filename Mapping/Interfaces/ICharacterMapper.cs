@@ -23,6 +23,7 @@ namespace DnDProject.Backend.Mapping.Interfaces
         void mapUpdatedCharacterOverEntity(Character updatedCharacter, Character entity);
         void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient entity);
         void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health entity);
+        void mapUpdatedStatsRecordOverEntity(Stats updatedRecord, Stats entity);
 
     }
 }

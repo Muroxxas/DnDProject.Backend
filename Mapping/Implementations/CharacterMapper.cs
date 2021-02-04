@@ -76,5 +76,10 @@ namespace DnDProject.Backend.Mapping.Implementations
             UpdateModelMapper<Health> mapper = new UpdateModelMapper<Health>();
             mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
         }
+        public void mapUpdatedStatsRecordOverEntity(Stats updatedRecord, Stats entity)
+        {
+            UpdateModelMapper<Stats> mapper = new UpdateModelMapper<Stats>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
+        }
     }
 }

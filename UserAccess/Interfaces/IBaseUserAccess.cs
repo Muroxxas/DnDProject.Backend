@@ -22,6 +22,10 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         Health GetHealthRecord(Guid Character_id);
         void UpdateHealthRecord(Health updatedRecord);
 
+        void AddStatsRecord(Stats stats);
+        Stats GetStatsRecord(Guid CHaracter_id);
+        void UpdateStatsRecord(Stats updatedRecord);
+
         void SaveChanges();
         void SaveChangesAsync();
 

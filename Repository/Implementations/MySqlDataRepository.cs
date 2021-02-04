@@ -64,6 +64,23 @@ namespace DnDProject.Backend.Repository.Implementations
             _characterMapper.mapUpdatedHealthRecordOverEntity(updatedRecord, entity);
         }
 
+
+        public void AddStatsRecord(Stats stats)
+        {
+            _characterContext.StatsRecords.Add(stats);
+        }
+
+        public Stats GetStatsRecord(Guid Character_id)
+        {
+            return _characterContext.StatsRecords.Find(Character_id);
+        }
+
+        public void UpdateStatsRecord(Stats updatedRecord)
+        {
+            Stats entity = _characterContext.StatsRecords.Find(updatedRecord.Character_id);
+            _characterMapper.mapUpdatedStatsRecordOverEntity(updatedRecord, entity);
+        }
+
         public void SaveChanges()
         {
             _characterContext.SaveChanges();

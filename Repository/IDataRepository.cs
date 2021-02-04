@@ -24,6 +24,9 @@ namespace DnDProject.Backend.Repository
         Health GetHealthRecord(Guid Character_id);
         void UpdateHealthRecord(Health updatedRecord);
 
+        void AddStatsRecord(Stats stats);
+        Stats GetStatsRecord(Guid Character_id);
+        void UpdateStatsRecord(Stats updatedRecord);
 
         void SaveChanges();
         void SaveChangesAsync();

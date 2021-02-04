@@ -72,5 +72,17 @@ namespace DnDProject.Backend.Mapping.Implementations
 
             mapper.Map<Character, Character>(updatedCharacter, record);
         }
+        public void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient record)
+        {
+            var UpdatedProficiencyRecord_OverOEntity = new MapperConfiguration(
+                cfg => cfg.CreateMap<IsProficient, IsProficient>()
+                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
+                );
+
+            var mapper = UpdatedProficiencyRecord_OverOEntity.CreateMapper();
+
+            mapper.Map<IsProficient, IsProficient>(updatedRecord, record);
+        }
+
     }
 }

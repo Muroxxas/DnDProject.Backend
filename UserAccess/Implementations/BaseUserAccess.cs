@@ -12,16 +12,41 @@ namespace DnDProject.Backend.UserAccess.Implementations
     public class BaseUserAccess : IBaseUserAccess
     {
         IDataRepository _dataRepository { get; set; }
-        public Character GetCharacter(Guid Character_id)
-        {
-
-            return _dataRepository.GetCharacterBy_CharacterID(Character_id);
-        }
 
         public void AddCharacter(Character character)
         {
-            _dataRepository.InsertCharacterIntoDb(character);
+            _dataRepository.AddCharacter(character);
         }
+        public Character GetCharacter(Guid Character_id)
+        {
+
+            return _dataRepository.GetCharacter(Character_id);
+        }
+        public void UpdateCharacter(Character character)
+        {
+            _dataRepository.UpdateCharacter(character);
+        }
+        public void DeleteCharacter(Guid Character_id)
+        {
+            _dataRepository.DeleteCharacter(Character_id);
+        }
+
+
+        public void AddProficiencyRecord(IsProficient proficiencies)
+        {
+            _dataRepository.AddProficiencyRecord(proficiencies);
+        }
+        public IsProficient GetProficiencyRecord(Guid Character_id)
+        {
+            return _dataRepository.GetProficiencyRecord(Character_id);
+        }
+        public void UpdateProficiencyRecord(IsProficient updatedRecord)
+        {
+            _dataRepository.UpdateProficiencyRecord(updatedRecord);
+
+
+        }
+
 
         public void SaveChanges()
         {

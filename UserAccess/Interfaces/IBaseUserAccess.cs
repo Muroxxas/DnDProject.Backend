@@ -9,9 +9,19 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 {
     public interface IBaseUserAccess
     {
-        Character GetCharacter(Guid Character_id);
-
         void AddCharacter(Character newCharacter);
+        Character GetCharacter(Guid Character_id);
+        void UpdateCharacter(Character updatedCharacter);
+        void DeleteCharacter(Guid Character_id);
+
+        void AddProficiencyRecord(IsProficient proficiencies);
+        IsProficient GetProficiencyRecord(Guid Character_id);
+        void UpdateProficiencyRecord(IsProficient updatedRecord);
+
+
+        void SaveChanges();
+        void SaveChangesAsync();
+
 
     }
 }

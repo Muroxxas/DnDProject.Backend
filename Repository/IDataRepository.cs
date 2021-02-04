@@ -9,11 +9,17 @@ namespace DnDProject.Backend.Repository
 {
     public interface IDataRepository
     {
-        Character GetCharacterBy_CharacterID(Guid Character_id);
+        void AddCharacter(Character character);
+        Character GetCharacter(Guid Character_id);
 
         void UpdateCharacter(Character updatedRecord);
-        void InsertCharacterIntoDb(Character character);
+        void DeleteCharacter(Guid Character_id);
 
+
+        
+        void AddProficiencyRecord(IsProficient proficiencies);
+        IsProficient GetProficiencyRecord(Guid Character_id);
+        void UpdateProficiencyRecord(IsProficient proficiencies);
         void SaveChanges();
         void SaveChangesAsync();
     }

@@ -15,22 +15,42 @@ namespace DnDProject.Backend.Repository.Implementations
         ICharacterMapper _characterMapper;
 
 
-        public Character GetCharacterBy_CharacterID(Guid Character_id)
+
+        public void AddCharacter(Character character)
+        {
+            _characterContext.Characters.Add(character);
+        }
+        public Character GetCharacter(Guid Character_id)
         {
             Character foundCharacter = _characterContext.Characters.Find(Character_id);
             return foundCharacter;
         }
 
-        public void InsertCharacterIntoDb(Character character)
-        {
-            _characterContext.Characters.Add(character);
-        }
-
         public void UpdateCharacter(Character updatedRecord)
         {
-            Character foundCharacter = GetCharacterBy_CharacterID(updatedRecord.Character_id);
+            Character foundCharacter = GetCharacter(updatedRecord.Character_id);
             _characterMapper.mapUpdatedCharacterOverEntity(updatedRecord, foundCharacter);
         }
+        public void DeleteCharacter(Guid Character_id)
+        {
+            Character foundCharacter = GetCharacter(Character_id);
+            _characterContext.Characters.Remove(foundCharacter);
+        }
+        public void AddProficiencyRecord(IsProficient proficiencies)
+        {
+            _characterContext.Proficiencies.Add(proficiencies);
+        }
+        public IsProficient GetProficiencyRecord(Guid Character_id)
+        {
+            IsProficient foundRecord = _characterContext.Proficiencies.Find(Character_id);
+            return foundRecord;
+        }
+        public void UpdateProficiencyRecord(IsProficient proficiencies)
+        {
+            IsProficient foundRecord = GetProficiencyRecord(proficiencies.Character_id);
+            _characterMapper.mapUpdatedProficiencyRecordOverEntity(proficiencies, foundRecord);
+        }
+
 
         public void SaveChanges()
         {

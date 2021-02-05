@@ -63,7 +63,6 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             _dataRepository.AddStatsRecord(stats);
         }
-
         public Stats GetStatsRecord(Guid Character_id)
         {
             return _dataRepository.GetStatsRecord(Character_id);
@@ -71,6 +70,19 @@ namespace DnDProject.Backend.UserAccess.Implementations
         public void UpdateStatsRecord(Stats updatedRecord)
         {
             _dataRepository.UpdateStatsRecord(updatedRecord);
+        }
+
+        public void AddCurrencyRecord(Currency currency)
+        {
+            _dataRepository.AddCurrencyRecord(currency);
+        }
+        public Currency GetCurrencyRecord(Guid Character_id)
+        {
+            return _dataRepository.GetCurrencyRecord(Character_id);
+        }
+        public void UpdateCurrencyRecord(Currency updatedRecord)
+        {
+            _dataRepository.UpdateCurrencyRecord(updatedRecord);
         }
 
         public void SaveChanges()

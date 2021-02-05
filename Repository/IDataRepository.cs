@@ -28,6 +28,10 @@ namespace DnDProject.Backend.Repository
         Stats GetStatsRecord(Guid Character_id);
         void UpdateStatsRecord(Stats updatedRecord);
 
+        void AddCurrencyRecord(Currency currency);
+        Currency GetCurrencyRecord(Guid Character_id);
+        void UpdateCurrencyRecord(Currency updatedRecord);
+
         void SaveChanges();
         void SaveChangesAsync();
     }

@@ -24,6 +24,7 @@ namespace DnDProject.Backend.Mapping.Interfaces
         void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient entity);
         void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health entity);
         void mapUpdatedStatsRecordOverEntity(Stats updatedRecord, Stats entity);
+        void mapUpdatedCurrencyRecordOverEntity(Currency updatedRecord, Currency entity);
 
     }
 }

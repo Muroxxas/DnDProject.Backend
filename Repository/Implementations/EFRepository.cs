@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Repository.Implementations
 {
-    public class MySqlDataRepository : IDataRepository
+    public class EFRepository : IDataRepository
     {
         CharacterContext _characterContext;
         ICharacterMapper _characterMapper;
@@ -62,6 +62,7 @@ namespace DnDProject.Backend.Repository.Implementations
         {
             Health entity = _characterContext.HealthRecords.Find(updatedRecord.Character_id);
             _characterMapper.mapUpdatedHealthRecordOverEntity(updatedRecord, entity);
+
         }
 
 
@@ -81,6 +82,20 @@ namespace DnDProject.Backend.Repository.Implementations
             _characterMapper.mapUpdatedStatsRecordOverEntity(updatedRecord, entity);
         }
 
+        public void AddCurrencyRecord(Currency currency)
+        {
+            _characterContext.CurrencyRecords.Add(currency);
+        }
+        public Currency GetCurrencyRecord(Guid Character_id)
+        {
+            return _characterContext.CurrencyRecords.Find(Character_id);
+        }
+        public void UpdateCurrencyRecord(Currency updatedRecord)
+        {
+            Currency entity = _characterContext.CurrencyRecords.Find(updatedRecord.Character_id);
+            _characterMapper.mapUpdatedCurrencyRecordOverEntity(updatedRecord, entity);
+        }
+
         public void SaveChanges()
         {
             _characterContext.SaveChanges();
@@ -91,16 +106,16 @@ namespace DnDProject.Backend.Repository.Implementations
         }
 
 
-        public MySqlDataRepository(CharacterContext characterContext)
+        public EFRepository(CharacterContext characterContext)
         {
             _characterContext = characterContext;
         }
-        public MySqlDataRepository(CharacterContext characterContext, ICharacterMapper characterMapper)
+        public EFRepository(CharacterContext characterContext, ICharacterMapper characterMapper)
         {
             _characterContext = characterContext;
             _characterMapper = characterMapper;
 
         }
-        public MySqlDataRepository() { }
+        public EFRepository() { }
     }
 }

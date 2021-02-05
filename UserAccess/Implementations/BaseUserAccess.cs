@@ -85,6 +85,28 @@ namespace DnDProject.Backend.UserAccess.Implementations
             _dataRepository.UpdateCurrencyRecord(updatedRecord);
         }
 
+
+        public void AddNote(Note note)
+        {
+            _dataRepository.AddNote(note);
+        }
+        public Note GetNote(Guid Note_id)
+        {
+            return _dataRepository.GetNote(Note_id);
+        }
+        public List<Note> GetNotesOwnedBy(Guid Character_id)
+        {
+            return _dataRepository.GetNotesOwnedBy(Character_id);
+        }
+
+        public void UpdateNote(Note updatedRecord)
+        {
+            _dataRepository.UpdateNote(updatedRecord);
+        }
+        public void DeleteNote(Guid Note_id)
+        {
+            _dataRepository.DeleteNote(Note_id);
+        }
         public void SaveChanges()
         {
             _dataRepository.SaveChanges();

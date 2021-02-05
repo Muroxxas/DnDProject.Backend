@@ -86,5 +86,10 @@ namespace DnDProject.Backend.Mapping.Implementations
             UpdateModelMapper<Currency> mapper = new UpdateModelMapper<Currency>();
             mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
         }
+        public void mapUpdatedNoteOverEntity(Note updatedRecord, Note entity)
+        {
+            UpdateModelMapper<Note> mapper = new UpdateModelMapper<Note>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
+        }
     }
 }

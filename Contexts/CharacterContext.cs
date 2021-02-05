@@ -16,5 +16,7 @@ namespace DnDProject.Backend.Contexts
         public virtual DbSet<Health> HealthRecords { get; set; }
         public virtual DbSet<Currency> CurrencyRecords { get; set; }
         public virtual DbSet<Stats> StatsRecords { get; set; }
+
+        public virtual DbSet<Note> Notes { get; set; }
     }
 }

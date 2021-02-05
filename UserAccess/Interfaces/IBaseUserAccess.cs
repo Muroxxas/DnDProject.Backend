@@ -30,6 +30,12 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         Currency GetCurrencyRecord(Guid Character_id);
         void UpdateCurrencyRecord(Currency updatedRecord);
 
+        void AddNote(Note note);
+        Note GetNote(Guid Note_id);
+        List<Note> GetNotesOwnedBy(Guid Character_id);
+        void UpdateNote(Note note);
+        void DeleteNote(Guid Note_id);
+
         void SaveChanges();
         void SaveChangesAsync();
 

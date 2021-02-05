@@ -96,6 +96,38 @@ namespace DnDProject.Backend.Repository.Implementations
             _characterMapper.mapUpdatedCurrencyRecordOverEntity(updatedRecord, entity);
         }
 
+
+        public void AddNote(Note note)
+        {
+            _characterContext.Notes.Add(note);
+        }
+
+        public Note GetNote(Guid Note_id)
+        {
+           return _characterContext.Notes.Find(Note_id);
+        }
+
+        public List<Note> GetNotesOwnedBy(Guid Character_id)
+        {
+            List<Note> notes = (from note in _characterContext.Notes
+                               where note.Character_id == Character_id
+                               select note).ToList();
+
+            return notes;
+        }
+
+        public void UpdateNote(Note updatedRecord)
+        {
+            Note entity = _characterContext.Notes.Find(updatedRecord.Note_id);
+            _characterMapper.mapUpdatedNoteOverEntity(updatedRecord, entity);
+        }
+
+        public void DeleteNote(Guid Note_id)
+        {
+            Note entity = _characterContext.Notes.Find(Note_id);
+            _characterContext.Notes.Remove(entity);
+        }
+
         public void SaveChanges()
         {
             _characterContext.SaveChanges();

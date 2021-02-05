@@ -3,6 +3,7 @@ using DnDProject.Backend.Mapping.Interfaces;
 using DnDProject.Entities.Character.DataModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +29,10 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public void UpdateCharacter(Character updatedRecord)
         {
-            Character entity = GetCharacter(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedCharacterOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //Character entity = GetCharacter(updatedRecord.Character_id);
+            //_characterMapper.mapUpdatedCharacterOverEntity(updatedRecord, entity);
         }
         public void DeleteCharacter(Guid Character_id)
         {
@@ -47,8 +50,10 @@ namespace DnDProject.Backend.Repository.Implementations
         }
         public void UpdateProficiencyRecord(IsProficient updatedRecord)
         {
-            IsProficient entity = GetProficiencyRecord(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedProficiencyRecordOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //IsProficient entity = GetProficiencyRecord(updatedRecord.Character_id);
+            //_characterMapper.mapUpdatedProficiencyRecordOverEntity(updatedRecord, entity);
         }
         public void AddHealthRecord(Health health)
         {
@@ -60,8 +65,10 @@ namespace DnDProject.Backend.Repository.Implementations
         }
         public void UpdateHealthRecord(Health updatedRecord)
         {
-            Health entity = _characterContext.HealthRecords.Find(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedHealthRecordOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //Health entity = _characterContext.HealthRecords.Find(updatedRecord.Character_id);
+            //_characterMapper.mapUpdatedHealthRecordOverEntity(updatedRecord, entity);
 
         }
 
@@ -78,8 +85,10 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public void UpdateStatsRecord(Stats updatedRecord)
         {
-            Stats entity = _characterContext.StatsRecords.Find(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedStatsRecordOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //Stats entity = _characterContext.StatsRecords.Find(updatedRecord.Character_id);
+            //_characterMapper.mapUpdatedStatsRecordOverEntity(updatedRecord, entity);
         }
 
         public void AddCurrencyRecord(Currency currency)
@@ -92,8 +101,10 @@ namespace DnDProject.Backend.Repository.Implementations
         }
         public void UpdateCurrencyRecord(Currency updatedRecord)
         {
-            Currency entity = _characterContext.CurrencyRecords.Find(updatedRecord.Character_id);
-            _characterMapper.mapUpdatedCurrencyRecordOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //Currency entity = _characterContext.CurrencyRecords.Find(updatedRecord.Character_id);
+            //_characterMapper.mapUpdatedCurrencyRecordOverEntity(updatedRecord, entity);
         }
 
 
@@ -118,8 +129,10 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public void UpdateNote(Note updatedRecord)
         {
-            Note entity = _characterContext.Notes.Find(updatedRecord.Note_id);
-            _characterMapper.mapUpdatedNoteOverEntity(updatedRecord, entity);
+            _characterContext.Entry(updatedRecord).State = EntityState.Modified;
+
+            //Note entity = _characterContext.Notes.Find(updatedRecord.Note_id);
+            //_characterMapper.mapUpdatedNoteOverEntity(updatedRecord, entity);
         }
 
         public void DeleteNote(Guid Note_id)

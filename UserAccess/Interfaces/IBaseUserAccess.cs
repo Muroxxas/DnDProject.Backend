@@ -32,7 +32,7 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
         void AddNote(Note note);
         Note GetNote(Guid Note_id);
-        List<Note> GetNotesOwnedBy(Guid Character_id);
+        IEnumerable<Note> GetNotesOwnedBy(Guid Character_id);
         void UpdateNote(Note note);
         void DeleteNote(Guid Note_id);
 

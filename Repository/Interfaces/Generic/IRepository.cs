@@ -28,6 +28,7 @@ namespace DnDProject.Backend.Repository.Interfaces.Generic
        
         //Delete
         void Remove(TEntity entity);
+        void Remove(Guid id);
         void RemoveRange(IEnumerable<TEntity> entities);
 
     }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Repository.Implementations
 {
-    class CurrencyRepository : Repository<Currency>, ICurrencyRepository
+    public class CurrencyRepository : Repository<Currency>, ICurrencyRepository
     {
         //cast the context inherited from the generic Repository as a CharacterContext.
         public CharacterContext characterContext { get { return Context as CharacterContext; } }

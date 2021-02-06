@@ -53,6 +53,11 @@ namespace DnDProject.Backend.Repository.Implementations.Generic
         {
             _dbSet.Remove(entity);
         }
+        public void Remove(Guid id)
+        {
+            TEntity foundRecord = _dbSet.Find(id);
+            _dbSet.Remove(foundRecord);
+        }
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             _dbSet.RemoveRange(entities);

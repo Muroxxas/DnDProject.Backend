@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Repository.Implementations
 {
-    class StatsRepository : Repository<Stats>, IStatsRepository
+    public class StatsRepository : Repository<Stats>, IStatsRepository
     {
         //cast the context inherited from the generic Repository as a CharacterContext.
         public CharacterContext characterContext { get { return Context as CharacterContext; } }

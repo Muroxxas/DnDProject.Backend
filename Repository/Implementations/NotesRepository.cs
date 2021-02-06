@@ -17,9 +17,8 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public IEnumerable<Note> GetNotesOwnedBy(Guid Character_id)
         {
-            List<Note> foundNotes = (from note in characterContext.Notes
-                                     where note.Character_id == Character_id
-                                     select note).ToList();
+            List<Note> foundNotes = characterContext.Set<Note>()
+                .Where(x => x.Character_id == Character_id).ToList();
 
             foundNotes.OrderBy(note => note.Name);
 

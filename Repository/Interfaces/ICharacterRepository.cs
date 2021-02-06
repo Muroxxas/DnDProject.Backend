@@ -11,6 +11,5 @@ namespace DnDProject.Backend.Repository.Interfaces
     public interface ICharacterRepository : IRepository<Character>
     {
         IEnumerable<Character> GetCharactersOwnedBy(Guid User_id);
-
     }
 }

@@ -12,37 +12,36 @@ namespace DnDProject.Backend.Repository.Implementations.Generic
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected DbContext Context;
-        protected DbSet<TEntity> _dbSet;
 
         //Create
         public void Add(TEntity newRecord)
         {
-            _dbSet.Add(newRecord);
+            Context.Set<TEntity>().Add(newRecord);
         }
         public void AddRange(IEnumerable<TEntity> newRecords)
         {
-            _dbSet.AddRange(newRecords);
+            Context.Set<TEntity>().AddRange(newRecords);
         }
 
         //Read
         public TEntity Get(Guid id)
         {
 
-            return _dbSet.Find(id);
+            return Context.Set<TEntity>().Find(id);
         }
         public IEnumerable<TEntity> GetAll()
         {
-            return _dbSet;
+            return Context.Set<TEntity>();
         }
         public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbSet.Where(predicate);
+            return Context.Set<TEntity>().Where(predicate);
         }
 
         //Update
         public void Update(TEntity updatedRecord)
         {
-            _dbSet.Attach(updatedRecord);
+            Context.Set<TEntity>().Attach(updatedRecord);
             var entry = Context.Entry(updatedRecord);
             entry.State = EntityState.Modified;
         }
@@ -51,23 +50,22 @@ namespace DnDProject.Backend.Repository.Implementations.Generic
         //Delete
         public void Remove(TEntity entity)
         {
-            _dbSet.Remove(entity);
+            Context.Set<TEntity>().Remove(entity);
         }
         public void Remove(Guid id)
         {
-            TEntity foundRecord = _dbSet.Find(id);
-            _dbSet.Remove(foundRecord);
+            TEntity foundRecord = Context.Set<TEntity>().Find(id);
+            Context.Set<TEntity>().Remove(foundRecord);
         }
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
-            _dbSet.RemoveRange(entities);
+            Context.Set<TEntity>().RemoveRange(entities);
         }
 
         public Repository(DbContext context)
         {
             Context = context;
-            //Set _dbSet to the DbSet of TEntity.
-            _dbSet = context.Set<TEntity>();
+
         }
     }
 }

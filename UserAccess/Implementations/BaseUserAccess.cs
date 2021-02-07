@@ -1,4 +1,6 @@
 ﻿using DnDProject.Backend.Repository;
+using DnDProject.Backend.Unit_Of_Work.Implementations;
+using DnDProject.Backend.Unit_Of_Work.Interfaces;
 using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
 using System;
@@ -11,114 +13,97 @@ namespace DnDProject.Backend.UserAccess.Implementations
 {
     public class BaseUserAccess : IBaseUserAccess
     {
-        IDataRepository _dataRepository { get; set; }
+        IUnitOfWork _worker { get; set; }
 
         public void AddCharacter(Character character)
         {
-            _dataRepository.AddCharacter(character);
+            _worker.Characters.Add(character);
         }
         public Character GetCharacter(Guid Character_id)
         {
 
-            return _dataRepository.GetCharacter(Character_id);
+            return _worker.Characters.Get(Character_id);
         }
-        public void UpdateCharacter(Character character)
-        {
-            _dataRepository.UpdateCharacter(character);
-        }
+
         public void DeleteCharacter(Guid Character_id)
         {
-            _dataRepository.DeleteCharacter(Character_id);
+            Character foundCharacter = _worker.Characters.Get(Character_id);
+            _worker.Characters.Remove(foundCharacter);
         }
 
 
         public void AddProficiencyRecord(IsProficient proficiencies)
         {
-            _dataRepository.AddProficiencyRecord(proficiencies);
+            _worker.ProficiencyRecords.Add(proficiencies);
         }
         public IsProficient GetProficiencyRecord(Guid Character_id)
         {
-            return _dataRepository.GetProficiencyRecord(Character_id);
+            return _worker.ProficiencyRecords.Get(Character_id);
         }
-        public void UpdateProficiencyRecord(IsProficient updatedRecord)
-        {
-            _dataRepository.UpdateProficiencyRecord(updatedRecord);
 
-        }
 
         public void AddHealthRecord(Health health)
         {
-            _dataRepository.AddHealthRecord(health);
+            _worker.HealthRecords.Add(health);
         }
         public Health GetHealthRecord(Guid Character_id)
         {
-            return _dataRepository.GetHealthRecord(Character_id);
+            return _worker.HealthRecords.Get(Character_id);
         }
-        public void UpdateHealthRecord(Health updatedRecord)
-        {
-            _dataRepository.UpdateHealthRecord(updatedRecord);
-        }
+
 
         public void AddStatsRecord(Stats stats)
         {
-            _dataRepository.AddStatsRecord(stats);
+           _worker.Stats.Add(stats);
         }
         public Stats GetStatsRecord(Guid Character_id)
         {
-            return _dataRepository.GetStatsRecord(Character_id);
+            return _worker.Stats.Get(Character_id);
         }
-        public void UpdateStatsRecord(Stats updatedRecord)
-        {
-            _dataRepository.UpdateStatsRecord(updatedRecord);
-        }
+
 
         public void AddCurrencyRecord(Currency currency)
         {
-            _dataRepository.AddCurrencyRecord(currency);
+            _worker.CurrencyRecords.Add(currency);
         }
         public Currency GetCurrencyRecord(Guid Character_id)
         {
-            return _dataRepository.GetCurrencyRecord(Character_id);
+            return _worker.CurrencyRecords.Get(Character_id);
         }
-        public void UpdateCurrencyRecord(Currency updatedRecord)
-        {
-            _dataRepository.UpdateCurrencyRecord(updatedRecord);
-        }
+
 
 
         public void AddNote(Note note)
         {
-            _dataRepository.AddNote(note);
+            _worker.Notes.Add(note);
         }
         public Note GetNote(Guid Note_id)
         {
-            return _dataRepository.GetNote(Note_id);
+            return _worker.Notes.Get(Note_id);
         }
-        public List<Note> GetNotesOwnedBy(Guid Character_id)
+        public IEnumerable<Note> GetNotesOwnedBy(Guid Character_id)
         {
-            return _dataRepository.GetNotesOwnedBy(Character_id);
+            return _worker.Notes.GetNotesOwnedBy(Character_id);
         }
 
-        public void UpdateNote(Note updatedRecord)
-        {
-            _dataRepository.UpdateNote(updatedRecord);
-        }
+
         public void DeleteNote(Guid Note_id)
         {
-            _dataRepository.DeleteNote(Note_id);
+            Note foundNote = _worker.Notes.Get(Note_id);
+            _worker.Notes.Remove(foundNote);
         }
         public void SaveChanges()
         {
-            _dataRepository.SaveChanges();
+            _worker.SaveChanges();
         }
         public void SaveChangesAsync()
         {
-            _dataRepository.SaveChangesAsync();
+            _worker.SaveChangesAsync();
         }
 
-        public BaseUserAccess(IDataRepository dataRepository)
+        public BaseUserAccess(IUnitOfWork worker)
         {
-            _dataRepository = dataRepository;
+            _worker = worker;
         }
 
     }

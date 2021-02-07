@@ -18,7 +18,17 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id)
         {
-            throw new NotImplementedException();
+           IEnumerable<Spell_Character> knownSpellRecords = spellsContext.KnownSpells.Where(x => x.Character_id == Character_id);
+
+            List<Guid> spell_ids = new List<Guid>();
+            foreach(Spell_Character S_C in knownSpellRecords)
+            {
+                spell_ids.Add(S_C.Spell_id);
+            }
+
+            IEnumerable<Spell> knownSpells = spellsContext.Spells.Where(spell => spell_ids.Contains(spell.Spell_id));
+
+            return knownSpells;
         }
 
         public IEnumerable<Spell> GetSpellsOfSchool(Guid School_id)
@@ -39,6 +49,24 @@ namespace DnDProject.Backend.Repository.Implementations
         public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddSpellMaterials(Material material)
+        {
+            spellsContext.Materials.Add(material);
+        }
+        public Material GetSpellMaterials(Guid Spell_id)
+        {
+            return spellsContext.Materials.Find(Spell_id);
+        }
+        public void DeleteSpellMaterials(Material material)
+        {
+            spellsContext.Materials.Remove(material);
+        }
+        public void DeleteSpellMaterialsById(Guid Spell_id)
+        {
+            Material foundMaterial = spellsContext.Materials.Find(Spell_id);
+            spellsContext.Materials.Remove(foundMaterial);
         }
 
         //When constructing this repository, pass the generic repository the same context the real repository is based upon.

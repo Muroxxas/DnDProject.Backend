@@ -22,5 +22,13 @@ namespace DnDProject.Backend.Repository.Interfaces
 
         void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);
 
+        void AddSpellMaterials(Material material);
+
+        Material GetSpellMaterials(Guid Spell_id);
+
+        void DeleteSpellMaterials(Material material);
+
+        void DeleteSpellMaterialsById(Guid Spell_id);
+
     }
 }

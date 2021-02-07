@@ -12,7 +12,7 @@ namespace DnDProject.Backend.Contexts
     {
         public virtual DbSet<Spell> Spells { get; set; }
         public virtual DbSet<School> Schools { get; set; }
-
+        public virtual DbSet<Material> Materials { get; set; }
 
         public virtual DbSet<Spell_Character> KnownSpells { get; set; }
     }

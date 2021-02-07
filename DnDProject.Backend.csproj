@@ -57,8 +57,10 @@
     <Compile Include="Contexts\CharacterContext.cs" />
     <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
+    <Compile Include="Mapping\Implementations\SpellsMapper.cs" />
     <Compile Include="Mapping\Implementations\UpdateModelMapper.cs" />
     <Compile Include="Mapping\Interfaces\ICharacterMapper.cs" />
+    <Compile Include="Mapping\Interfaces\ISpellsMapper.cs" />
     <Compile Include="Mapping\Interfaces\IUpdateModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementations\CharacterRepository.cs" />

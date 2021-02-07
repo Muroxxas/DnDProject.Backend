@@ -24,10 +24,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
 
             return _worker.Characters.Get(Character_id);
         }
-        public void UpdateCharacter(Character character)
-        {
-            _worker.Characters.Update(character);
-        }
+
         public void DeleteCharacter(Guid Character_id)
         {
             Character foundCharacter = _worker.Characters.Get(Character_id);
@@ -43,11 +40,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.ProficiencyRecords.Get(Character_id);
         }
-        public void UpdateProficiencyRecord(IsProficient updatedRecord)
-        {
-            _worker.ProficiencyRecords.Update(updatedRecord);
 
-        }
 
         public void AddHealthRecord(Health health)
         {
@@ -57,10 +50,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.HealthRecords.Get(Character_id);
         }
-        public void UpdateHealthRecord(Health updatedRecord)
-        {
-            _worker.HealthRecords.Update(updatedRecord);
-        }
+
 
         public void AddStatsRecord(Stats stats)
         {
@@ -70,10 +60,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.Stats.Get(Character_id);
         }
-        public void UpdateStatsRecord(Stats updatedRecord)
-        {
-            _worker.Stats.Update(updatedRecord);
-        }
+
 
         public void AddCurrencyRecord(Currency currency)
         {
@@ -83,10 +70,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.CurrencyRecords.Get(Character_id);
         }
-        public void UpdateCurrencyRecord(Currency updatedRecord)
-        {
-            _worker.CurrencyRecords.Update(updatedRecord);
-        }
+
 
 
         public void AddNote(Note note)
@@ -102,10 +86,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
             return _worker.Notes.GetNotesOwnedBy(Character_id);
         }
 
-        public void UpdateNote(Note updatedRecord)
-        {
-            _worker.Notes.Update(updatedRecord);
-        }
+
         public void DeleteNote(Guid Note_id)
         {
             Note foundNote = _worker.Notes.Get(Note_id);

@@ -38,15 +38,6 @@ namespace DnDProject.Backend.Repository.Implementations.Generic
             return Context.Set<TEntity>().Where(predicate);
         }
 
-        //Update
-        public void Update(TEntity updatedRecord)
-        {
-            Context.Set<TEntity>().Attach(updatedRecord);
-            var entry = Context.Entry(updatedRecord);
-            entry.State = EntityState.Modified;
-        }
-
-
         //Delete
         public void Remove(TEntity entity)
         {

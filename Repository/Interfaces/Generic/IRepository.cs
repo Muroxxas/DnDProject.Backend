@@ -22,9 +22,6 @@ namespace DnDProject.Backend.Repository.Interfaces.Generic
 
         //Allows me to use Linq and lambda statements (x => x.propertyName) to find objects, such as if I want to find all characters with name "John".
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
-
-        //Update
-        void Update(TEntity updatedRecord);
        
         //Delete
         void Remove(TEntity entity);

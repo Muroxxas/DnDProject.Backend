@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\CharacterContext.cs" />
+    <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
     <Compile Include="Mapping\Implementations\UpdateModelMapper.cs" />
     <Compile Include="Mapping\Interfaces\ICharacterMapper.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Repository\Implementations\HealthRepository.cs" />
     <Compile Include="Repository\Implementations\IsProficientRepository.cs" />
     <Compile Include="Repository\Implementations\NotesRepository.cs" />
+    <Compile Include="Repository\Implementations\SpellsRepository.cs" />
     <Compile Include="Repository\Implementations\StatsRepository.cs" />
     <Compile Include="Repository\Interfaces\ICharacterRepository.cs" />
     <Compile Include="Repository\Implementations\Generic\Repository.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Repository\Interfaces\IHealthRepository.cs" />
     <Compile Include="Repository\Interfaces\IIsProficientRepository.cs" />
     <Compile Include="Repository\Interfaces\INotesRepository.cs" />
+    <Compile Include="Repository\Interfaces\ISpellsRepository.cs" />
     <Compile Include="Repository\Interfaces\IStatsRepository.cs" />
     <Compile Include="Repository\RepositoryFactory.cs" />
     <Compile Include="Unit Of Work\Implementations\UnitOfWork.cs" />

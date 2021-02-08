@@ -33,23 +33,44 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public IEnumerable<Spell> GetSpellsOfSchool(Guid School_id)
         {
-            throw new NotImplementedException();
+            return spellsContext.Spells.Where(spell => spell.School_id == School_id).ToList();
         }
 
         public IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id)
         {
-            throw new NotImplementedException();
+            IEnumerable<Spell_Class> CastableByRecords = spellsContext.CastableByRecords.Where(x => x.Class_id == Class_id);
+
+            List<Guid> spell_ids = new List<Guid>();
+            foreach(Spell_Class S_C in CastableByRecords)
+            {
+                spell_ids.Add(S_C.Spell_id);
+
+            }
+
+            IEnumerable<Spell> knownSpells = spellsContext.Spells.Where(spell => spell_ids.Contains(spell.Spell_id));
+
+            return knownSpells;
         }
 
         public void CharacterLearnsSpell(Guid Character_id, Guid Spell_id)
         {
-            throw new NotImplementedException();
+            Spell_Character learnedSpell = new Spell_Character
+            {
+                Spell_id = Spell_id,
+                Character_id = Character_id
+            };
+            spellsContext.KnownSpells.Add(learnedSpell);
         }
 
         public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
         {
-            throw new NotImplementedException();
+            Spell_Character foundRecord = (from S_C in spellsContext.KnownSpells
+                                          where S_C.Spell_id == Spell_id & S_C.Character_id == Character_id
+                                          select S_C).First();
+            spellsContext.KnownSpells.Remove(foundRecord);
+
         }
+
 
         public void AddSpellMaterials(Material material)
         {

@@ -15,5 +15,6 @@ namespace DnDProject.Backend.Contexts
         public virtual DbSet<Material> Materials { get; set; }
 
         public virtual DbSet<Spell_Character> KnownSpells { get; set; }
+        public virtual DbSet<Spell_Class> CastableByRecords { get; set; }
     }
 }

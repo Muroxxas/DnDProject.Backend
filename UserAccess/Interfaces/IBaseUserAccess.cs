@@ -1,4 +1,5 @@
 ﻿using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,15 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         Note GetNote(Guid Note_id);
         IEnumerable<Note> GetNotesOwnedBy(Guid Character_id);
         void DeleteNote(Guid Note_id);
+
+        Spell GetSpell(Guid Spell_id);
+        Material GetSpellMaterials(Guid SPell_id);
+        IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id);
+        IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id);
+        IEnumerable<Spell> GetSpellsOfSchool(Guid School_id);
+
+        void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
+        void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);
 
         void SaveChanges();
         void SaveChangesAsync();

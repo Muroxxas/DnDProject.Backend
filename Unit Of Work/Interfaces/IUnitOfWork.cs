@@ -15,6 +15,8 @@ namespace DnDProject.Backend.Unit_Of_Work.Interfaces
         IIsProficientRepository ProficiencyRecords { get;  }
         INotesRepository Notes { get;  }
         IStatsRepository Stats { get;  }
+        ISpellsRepository Spells { get; }
+
 
         void SaveChanges();
         void SaveChangesAsync();

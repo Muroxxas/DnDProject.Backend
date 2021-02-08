@@ -3,6 +3,7 @@ using DnDProject.Backend.Unit_Of_Work.Implementations;
 using DnDProject.Backend.Unit_Of_Work.Interfaces;
 using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
 {
     public class BaseUserAccess : IBaseUserAccess
     {
-        IUnitOfWork _worker { get; set; }
+        private IUnitOfWork _worker { get; set; }
 
         public void AddCharacter(Character character)
         {
@@ -99,6 +100,40 @@ namespace DnDProject.Backend.UserAccess.Implementations
         public void SaveChangesAsync()
         {
             _worker.SaveChangesAsync();
+        }
+
+        public Spell GetSpell(Guid Spell_id)
+        {
+            return _worker.Spells.Get(Spell_id);
+        }
+        public Material GetSpellMaterials(Guid Spell_id)
+        {
+            return _worker.Spells.GetSpellMaterials(Spell_id);
+        }
+
+        public IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id)
+        {
+            return _worker.Spells.GetSpellsKnownBy(Character_id);
+        }
+        public IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id)
+        {
+            return _worker.Spells.GetSpellsCastableBy(Class_id);
+        }
+        public IEnumerable<Spell> GetSpellsOfSchool(Guid School_id)
+        {
+            return _worker.Spells.GetSpellsOfSchool(School_id);
+        }
+
+
+        public void CharacterLearnsSpell(Guid Character_id, Guid Spell_id)
+        {
+
+            _worker.Spells.CharacterLearnsSpell(Character_id, Spell_id);
+        }
+
+        public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
+        {
+            _worker.Spells.CharacterForgetsSpell(Character_id, Spell_id);
         }
 
         public BaseUserAccess(IUnitOfWork worker)

@@ -13,6 +13,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
     public class UnitOfWork : IUnitOfWork
     {
         private CharacterContext _context;
+        private SpellsContext _spellsContext;
 
         //By having this ICharacterRepository as a public object, we can enable our services to access it's methods while obscuring the implementation, thus loosely coupling our data access system and our code!
         public ICharacterRepository Characters { get; private set; }
@@ -21,6 +22,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
         public IIsProficientRepository ProficiencyRecords { get; private set; }
         public INotesRepository Notes { get; private set; }
         public IStatsRepository Stats { get; private set; }
+        public ISpellsRepository Spells { get; private set; }
 
 
         public void Dispose()
@@ -30,11 +32,25 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            if(_context != null)
+            {
+                _context.SaveChanges();
+            }
+            if(_spellsContext != null)
+            {
+                _spellsContext.SaveChanges();
+            }
         }
         public void SaveChangesAsync()
         {
-            _context.SaveChangesAsync();
+            if(_context != null)
+            {
+                _context.SaveChangesAsync();
+            }
+            if(_spellsContext != null)
+            {
+                _spellsContext.SaveChangesAsync();
+            }
         }
 
 
@@ -43,6 +59,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
         {
             _context = context;
             //Hmm. Looks like I would need to use a factory here to keep the implementation loosely coupled. Not sure how I would get Autofac to run in a library separate from my MVC project.
+            //Should probably go review TIme Coreys video on autofac.
             Characters = RepositoryFactory.GetCharacterRepository(context);
             HealthRecords = RepositoryFactory.GetHealthRepository(context);
             CurrencyRecords = RepositoryFactory.GetCurrencyRepository(context);
@@ -51,6 +68,25 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
             Stats = RepositoryFactory.GetStatsRepository(context);
 
 
+        }
+        public UnitOfWork(SpellsContext SpellsContext)
+        {
+            _spellsContext = SpellsContext;
+            Spells = RepositoryFactory.GetSpellsRepository(SpellsContext);
+        }
+
+        public UnitOfWork(CharacterContext context, SpellsContext SpellsContext)
+        {
+            _context = context;
+            Characters = RepositoryFactory.GetCharacterRepository(context);
+            HealthRecords = RepositoryFactory.GetHealthRepository(context);
+            CurrencyRecords = RepositoryFactory.GetCurrencyRepository(context);
+            ProficiencyRecords = RepositoryFactory.GetIsProficientRepository(context);
+            Notes = RepositoryFactory.GetNotesRepository(context);
+            Stats = RepositoryFactory.GetStatsRepository(context);
+
+            _spellsContext = SpellsContext;
+            Spells = RepositoryFactory.GetSpellsRepository(SpellsContext);
         }
 
 

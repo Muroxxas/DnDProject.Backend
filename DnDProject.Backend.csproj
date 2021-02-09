@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contexts\CharacterContext.cs" />
+    <Compile Include="Contexts\ItemsContext.cs" />
     <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
     <Compile Include="Mapping\Implementations\SpellsMapper.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Repository\Implementations\CurrencyRepository.cs" />
     <Compile Include="Repository\Implementations\HealthRepository.cs" />
     <Compile Include="Repository\Implementations\IsProficientRepository.cs" />
+    <Compile Include="Repository\Implementations\ItemsRepository.cs" />
     <Compile Include="Repository\Implementations\NotesRepository.cs" />
     <Compile Include="Repository\Implementations\SpellsRepository.cs" />
     <Compile Include="Repository\Implementations\StatsRepository.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Repository\Interfaces\ICurrencyRepository.cs" />
     <Compile Include="Repository\Interfaces\IHealthRepository.cs" />
     <Compile Include="Repository\Interfaces\IIsProficientRepository.cs" />
+    <Compile Include="Repository\Interfaces\IItemsRepository.cs" />
     <Compile Include="Repository\Interfaces\INotesRepository.cs" />
     <Compile Include="Repository\Interfaces\ISpellsRepository.cs" />
     <Compile Include="Repository\Interfaces\IStatsRepository.cs" />
@@ -133,8 +136,10 @@
     <Compile Include="Unit Of Work\Implementations\UnitOfWork.cs" />
     <Compile Include="Unit Of Work\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UserAccess\Implementations\BaseUserAccess.cs" />
+    <Compile Include="UserAccess\Implementations\ItemsManagerUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\SpellManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IBaseUserAccess.cs" />
+    <Compile Include="UserAccess\Interfaces\IItemsManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\ISpellManagerUserAccess.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -40,5 +40,9 @@ namespace DnDProject.Backend.Repository
         {
             return new SpellsRepository(spellsContext);
         }
+        public static IItemsRepository GetItemsRepository(ItemsContext itemsContext)
+        {
+            return new ItemsRepository(itemsContext);
+        }
     }
 }

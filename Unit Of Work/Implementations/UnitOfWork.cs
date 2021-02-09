@@ -14,6 +14,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
     {
         private CharacterContext _context;
         private SpellsContext _spellsContext;
+        private ItemsContext _itemsContext;
 
         //By having this ICharacterRepository as a public object, we can enable our services to access it's methods while obscuring the implementation, thus loosely coupling our data access system and our code!
         public ICharacterRepository Characters { get; private set; }
@@ -23,6 +24,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
         public INotesRepository Notes { get; private set; }
         public IStatsRepository Stats { get; private set; }
         public ISpellsRepository Spells { get; private set; }
+        public IItemsRepository Items { get; private set; }
 
 
         public void Dispose()
@@ -87,6 +89,43 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
 
             _spellsContext = SpellsContext;
             Spells = RepositoryFactory.GetSpellsRepository(SpellsContext);
+        }
+
+        public UnitOfWork(ItemsContext itemsContext)
+        {
+            _itemsContext = itemsContext;
+            Items = RepositoryFactory.GetItemsRepository(itemsContext);
+        }
+
+        public UnitOfWork(CharacterContext context, ItemsContext itemsContext)
+        {
+            _context = context;
+            Characters = RepositoryFactory.GetCharacterRepository(context);
+            HealthRecords = RepositoryFactory.GetHealthRepository(context);
+            CurrencyRecords = RepositoryFactory.GetCurrencyRepository(context);
+            ProficiencyRecords = RepositoryFactory.GetIsProficientRepository(context);
+            Notes = RepositoryFactory.GetNotesRepository(context);
+            Stats = RepositoryFactory.GetStatsRepository(context);
+
+            _itemsContext = itemsContext;
+            Items = RepositoryFactory.GetItemsRepository(itemsContext);
+        }
+
+        public UnitOfWork(CharacterContext context, SpellsContext spellsContext, ItemsContext itemsContext)
+        {
+            _context = context;
+            Characters = RepositoryFactory.GetCharacterRepository(context);
+            HealthRecords = RepositoryFactory.GetHealthRepository(context);
+            CurrencyRecords = RepositoryFactory.GetCurrencyRepository(context);
+            ProficiencyRecords = RepositoryFactory.GetIsProficientRepository(context);
+            Notes = RepositoryFactory.GetNotesRepository(context);
+            Stats = RepositoryFactory.GetStatsRepository(context);
+
+            _spellsContext = spellsContext;
+            Spells = RepositoryFactory.GetSpellsRepository(spellsContext);
+
+            _itemsContext = itemsContext;
+            Items = RepositoryFactory.GetItemsRepository(itemsContext);
         }
 
 

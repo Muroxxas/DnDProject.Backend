@@ -1,4 +1,5 @@
 ﻿using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Items.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,15 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
         void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);
+
+
+        Item GetItem(Guid Item_id);
+        IEnumerable<Item> GetItemsHeldBy(Guid Character_id);
+        IEnumerable<Tag> GetAllTags();
+        IEnumerable<Tag> GetTagsForItem(Guid Item_id);
+
+        void CharacterObtainsItem(Guid Character_id, Guid Item_id);
+        void CharacterLosesItem(Guid Character_id, Guid Item_id);
 
         void SaveChanges();
         void SaveChangesAsync();

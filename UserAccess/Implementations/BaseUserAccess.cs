@@ -3,6 +3,7 @@ using DnDProject.Backend.Unit_Of_Work.Implementations;
 using DnDProject.Backend.Unit_Of_Work.Interfaces;
 using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Items.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
@@ -134,6 +135,33 @@ namespace DnDProject.Backend.UserAccess.Implementations
         public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
         {
             _worker.Spells.CharacterForgetsSpell(Character_id, Spell_id);
+        }
+
+        public void CharacterObtainsItem(Guid Character_id, Guid Item_id)
+        {
+            _worker.Items.CharacterObtainsItem(Character_id, Item_id);
+        }
+
+        public void CharacterLosesItem(Guid Character_id, Guid Item_id)
+        {
+            _worker.Items.CharacterLosesItem(Character_id, Item_id);
+        }
+
+        public Item GetItem(Guid Item_id)
+        {
+            return _worker.Items.Get(Item_id);
+        }
+        public IEnumerable<Item> GetItemsHeldBy(Guid Character_id)
+        {
+            return _worker.Items.GetItemsHeldBy(Character_id);
+        }
+        public IEnumerable<Tag> GetAllTags()
+        {
+            return _worker.Items.GetAllTags();
+        }
+        public IEnumerable<Tag> GetTagsForItem(Guid Item_id)
+        {
+            return _worker.Items.GetTagsForItem(Item_id);
         }
 
         public BaseUserAccess(IUnitOfWork worker)

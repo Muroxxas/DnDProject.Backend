@@ -15,6 +15,7 @@ namespace DnDProject.Backend.Repository.Interfaces
         IEnumerable<Character_Class_Subclass> GetAllKnownClassRecordsOfCharacter(Guid Character_id);
 
         void CharacterLearnsClass(Guid Character_id, Guid Class_id);
+        void CharacterLearnsClasses(Guid Character_id, IEnumerable<Guid> Class_ids);
         void CharacterLearnsClass(Guid Character_id, Guid Class_id, Guid Subclass_id);
         void CharacterForgetsClass(Guid Character_id, Guid Class_id);
     }

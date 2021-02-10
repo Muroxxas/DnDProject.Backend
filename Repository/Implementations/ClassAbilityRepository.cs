@@ -16,11 +16,14 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public IEnumerable<ClassAbility> GetAbilitiesOfClass(Guid Class_id)
         {
-            throw new NotImplementedException();
+            return _classContext.ClassAbilities.Where(x => x.Class_id == Class_id);
         }
         public IEnumerable<ClassAbility> GetAbilitiesOfClassAtOrBelowLevel(Guid Class_id, int level)
         {
-            throw new NotImplementedException();
+            IEnumerable<ClassAbility> foundAbilities = _classContext.ClassAbilities.Where(x => x.Class_id == Class_id);
+            IEnumerable<ClassAbility> abilitiesAtOrUnderLevel = foundAbilities.Where(x => x.LevelLearned <= level);
+
+            return abilitiesAtOrUnderLevel;
         }
 
 

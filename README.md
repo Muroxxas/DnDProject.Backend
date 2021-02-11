@@ -2,7 +2,7 @@
 
 This class library contains the backend functionality for my DnD Web application, including repositories, units of work, user access facades, services, IoC containerization, and more.
 
-##The state of this project is in constant flux! All designs and implementations are subject to change!
+**The state of this project is in constant flux! All designs and implementations are subject to change!**
 
 As I discover, study, design, and implement new design patterns, tools, and other things, the software design and implementation of the backend services can and likely *will* change drastically. 
 If I discover a major design pattern or tool that I should have implemented, expect a new branch to be created as I practice and attempt to gain experience with this tool. 

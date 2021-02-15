@@ -3,6 +3,7 @@ using DnDProject.Backend.Unit_Of_Work.Implementations;
 using DnDProject.Backend.Unit_Of_Work.Interfaces;
 using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
@@ -162,6 +163,78 @@ namespace DnDProject.Backend.UserAccess.Implementations
         public IEnumerable<Tag> GetTagsForItem(Guid Item_id)
         {
             return _worker.Items.GetTagsForItem(Item_id);
+        }
+
+        public PlayableClass GetPlayableClass(Guid Class_id)
+        {
+            return _worker.Classes.Get(Class_id);
+        }
+        public IEnumerable<PlayableClass> GetAllPlayableClasses()
+        {
+            return _worker.Classes.GetAll();
+        }
+        public IEnumerable<PlayableClass> GetClassesOfCharacter(Guid Character_id)
+        {
+            return _worker.Classes.GetClassesOfCharacter(Character_id);
+        }
+        public Character_Class_Subclass GetKnownClassRecordOfCharaterAndClass(Guid Character_id, Guid Class_id)
+        {
+            return _worker.Classes.GetKnownClassRecordOfCharacterAndClass(Character_id, Class_id);
+        }
+        public void CharacterLearnsClass(Guid Character_id, Guid Class_id)
+        {
+            _worker.Classes.CharacterLearnsClass(Character_id, Class_id);
+        }
+        public void CharacterLearnsClasses(Guid Character_id, List<Guid> Class_ids)
+        {
+            _worker.Classes.CharacterLearnsClasses(Character_id, Class_ids);
+        }
+        public void CharacterForgetsClass(Guid Character_id, Guid Class_id)
+        {
+            _worker.Classes.CharacterForgetsClass(Character_id, Class_id);
+        }
+
+        public IEnumerable<ClassAbility> GetAbilitiesOfClass(Guid Class_id)
+        {
+            return _worker.ClassAbilities.GetAbilitiesOfClass(Class_id);
+        }
+        public IEnumerable<ClassAbility> GetAbilitiesOfClassAtOrBelowLevel(Guid Class_id, int level)
+        {
+            return _worker.ClassAbilities.GetAbilitiesOfClassAtOrBelowLevel(Class_id, level);
+        }
+        public ClassAbility GetAbility(Guid ClassAbility_id)
+        {
+            return _worker.ClassAbilities.Get(ClassAbility_id);
+        }
+
+        public Subclass GetSubclass(Guid Subclass_id)
+        {
+            return _worker.Subclasses.Get(Subclass_id);
+        }
+        public IEnumerable<Subclass> GetAllSubclassesForClass(Guid Class_id)
+        {
+            return _worker.Subclasses.GetAllSubclassesForClass(Class_id);
+        }
+        public void CharacterOfClassLearnsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id)
+        {
+            _worker.Subclasses.CharacterOfClassLearnsSubclass(Character_id, Class_id, Subclass_id);
+        }
+        public void CharacterOfClassForgetsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id)
+        {
+            _worker.Subclasses.CharacterOfClassForgetsSubclass(Character_id, Class_id, Subclass_id);
+        }
+
+        public SubclassAbility GetSubclassAbility(Guid SubclassAbility_id)
+        {
+            return _worker.SubclassAbilities.Get(SubclassAbility_id);
+        }
+        public IEnumerable<SubclassAbility> GetAllAbilitiesOfSubclass(Guid Subclass_id)
+        {
+            return _worker.SubclassAbilities.GetAllAbilitiesOfSubclass(Subclass_id);
+        }
+        public IEnumerable<SubclassAbility> GetAbilitiesOfSubclassAtOrBelowLevel(Guid Subclass_id, int level)
+        {
+            return _worker.SubclassAbilities.GetAbilitiesOfSubclassAtOrBelowLevel(Subclass_id, level);
         }
 
         public BaseUserAccess(IUnitOfWork worker)

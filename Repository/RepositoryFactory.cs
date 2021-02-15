@@ -44,5 +44,21 @@ namespace DnDProject.Backend.Repository
         {
             return new ItemsRepository(itemsContext);
         }
+        public static IPlayableClassRepository GetPlayableClassRepository(PlayableClassContext playableClassContext)
+        {
+            return new PlayableClassRepository(playableClassContext);
+        }
+        public static IClassAbilityRepository GetClassAbilityRepository(PlayableClassContext playableClassContext)
+        {
+            return new ClassAbilityRepository(playableClassContext);
+        }
+        public static ISubclassRepository GetSubclassRepository( PlayableClassContext playableClassContext)
+        {
+            return new SubclassRepository(playableClassContext);
+        }
+        public static ISubclassAbilityRepository GetSubclassAbilityRepository(PlayableClassContext playableClassContext)
+        {
+            return new SubclassAbilityRepository(playableClassContext);
+        }
     }
 }

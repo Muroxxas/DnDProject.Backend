@@ -1,4 +1,5 @@
 ﻿using DnDProject.Entities.Character.DataModels;
+using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
@@ -51,6 +52,28 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
         void CharacterObtainsItem(Guid Character_id, Guid Item_id);
         void CharacterLosesItem(Guid Character_id, Guid Item_id);
+
+
+        PlayableClass GetPlayableClass(Guid CLass_id);
+        IEnumerable<PlayableClass> GetAllPlayableClasses();
+        IEnumerable<PlayableClass> GetClassesOfCharacter(Guid Character_id);
+        Character_Class_Subclass GetKnownClassRecordOfCharaterAndClass(Guid Character_id, Guid Class_id);
+        void CharacterLearnsClass(Guid Character_id, Guid Class_id);
+        void CharacterLearnsClasses(Guid Character_id, List<Guid> Class_ids);
+        void CharacterForgetsClass(Guid Character_id, Guid Class_id);
+
+        ClassAbility GetAbility(Guid ClassAbility_id);
+        IEnumerable<ClassAbility> GetAbilitiesOfClass(Guid Class_id);
+        IEnumerable<ClassAbility> GetAbilitiesOfClassAtOrBelowLevel(Guid Class_id, int level);
+
+        Subclass GetSubclass(Guid Subclass_id);
+        IEnumerable<Subclass> GetAllSubclassesForClass(Guid Class_id);
+        void CharacterOfClassLearnsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id);
+        void CharacterOfClassForgetsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id);
+
+        SubclassAbility GetSubclassAbility(Guid Subclass_id);
+        IEnumerable<SubclassAbility> GetAllAbilitiesOfSubclass(Guid Subbclass_id);
+        IEnumerable<SubclassAbility> GetAbilitiesOfSubclassAtOrBelowLevel(Guid Subclass_id, int level);
 
         void SaveChanges();
         void SaveChangesAsync();

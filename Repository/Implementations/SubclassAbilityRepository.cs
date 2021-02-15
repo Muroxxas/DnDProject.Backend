@@ -14,7 +14,7 @@ namespace DnDProject.Backend.Repository.Implementations
     {
         public PlayableClassContext _classContext { get { return Context as PlayableClassContext; } }
 
-        public IEnumerable<SubclassAbility> GetAbilitiesOfSubclass(Guid Subclass_id)
+        public IEnumerable<SubclassAbility> GetAllAbilitiesOfSubclass(Guid Subclass_id)
         {
             return _classContext.SubclassAbilities.Where(x => x.Subclass_id == Subclass_id).ToList();
         }

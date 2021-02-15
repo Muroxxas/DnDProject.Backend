@@ -17,7 +17,10 @@ namespace DnDProject.Backend.Unit_Of_Work.Interfaces
         IStatsRepository Stats { get;  }
         ISpellsRepository Spells { get; }
         IItemsRepository Items { get; }
-
+        IPlayableClassRepository Classes { get; }
+        IClassAbilityRepository ClassAbilities { get; }
+        ISubclassRepository Subclasses { get; }
+        ISubclassAbilityRepository SubclassAbilities { get; }
         void SaveChanges();
         void SaveChangesAsync();
     }

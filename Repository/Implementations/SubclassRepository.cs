@@ -27,7 +27,7 @@ namespace DnDProject.Backend.Repository.Implementations
             return _classContext.Subclasses.Where(x => x.Class_id == Class_id).ToList();
         }
 
-        public void CharacterForgetsSubclassOfClass(Guid Character_id, Guid Class_id, Guid Subclass_id)
+        public void CharacterOfClassForgetsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id)
         {
             Character_Class_Subclass foundRecord = _classContext.KnownClasses.Where(x => x.Character_id == Character_id && x.Class_id == Class_id).First();
             if (foundRecord != null)

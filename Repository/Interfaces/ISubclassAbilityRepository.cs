@@ -10,7 +10,7 @@ namespace DnDProject.Backend.Repository.Interfaces
 {
     public interface ISubclassAbilityRepository : IRepository<SubclassAbility>
     {
-        IEnumerable<SubclassAbility> GetAbilitiesOfSubclass(Guid Subclass_id);
+        IEnumerable<SubclassAbility> GetAllAbilitiesOfSubclass(Guid Subclass_id);
         IEnumerable<SubclassAbility> GetAbilitiesOfSubclassAtOrBelowLevel(Guid Subclass_id, int level);
 
     }

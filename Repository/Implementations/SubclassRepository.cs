@@ -16,16 +16,24 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public void CharacterOfClassLearnsSubclass(Guid Character_id, Guid Class_id, Guid Subclass_id)
         {
-            throw new NotImplementedException();
+            Character_Class_Subclass foundRecord = _classContext.KnownClasses.Where(x => x.Character_id == Character_id && x.Class_id == Class_id).First();
+            if(foundRecord != null)
+            {
+                foundRecord.Subclass_id = Subclass_id;
+            }
         }
         public IEnumerable<Subclass> GetAllSubclassesForClass(Guid Class_id)
         {
-            throw new NotImplementedException();
+            return _classContext.Subclasses.Where(x => x.Class_id == Class_id).ToList();
         }
 
         public void CharacterForgetsSubclassOfClass(Guid Character_id, Guid Class_id, Guid Subclass_id)
         {
-            throw new NotImplementedException();
+            Character_Class_Subclass foundRecord = _classContext.KnownClasses.Where(x => x.Character_id == Character_id && x.Class_id == Class_id).First();
+            if (foundRecord != null)
+            {
+                foundRecord.Subclass_id = Guid.Empty;
+            }
         }
 
         public SubclassRepository(PlayableClassContext context) : base(context) { }

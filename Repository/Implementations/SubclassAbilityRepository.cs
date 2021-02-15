@@ -16,11 +16,11 @@ namespace DnDProject.Backend.Repository.Implementations
 
         public IEnumerable<SubclassAbility> GetAbilitiesOfSubclass(Guid Subclass_id)
         {
-            throw new NotImplementedException();
+            return _classContext.SubclassAbilities.Where(x => x.Subclass_id == Subclass_id).ToList();
         }
         public IEnumerable<SubclassAbility> GetAbilitiesOfSubclassAtOrBelowLevel(Guid Subclass_id, int level)
         {
-            throw new NotImplementedException();
+            return _classContext.SubclassAbilities.Where(x => x.Subclass_id == Subclass_id && x.LevelLearned <= level).ToList();
         }
 
         public SubclassAbilityRepository(PlayableClassContext context) : base(context) { }

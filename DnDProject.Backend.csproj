@@ -145,9 +145,11 @@
     <Compile Include="Unit Of Work\Implementations\UnitOfWork.cs" />
     <Compile Include="Unit Of Work\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UserAccess\Implementations\BaseUserAccess.cs" />
+    <Compile Include="UserAccess\Implementations\ClassManagerUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\ItemsManagerUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\SpellManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IBaseUserAccess.cs" />
+    <Compile Include="UserAccess\Interfaces\IClassManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IItemsManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\ISpellManagerUserAccess.cs" />
   </ItemGroup>

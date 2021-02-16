@@ -107,6 +107,7 @@
     <Compile Include="Contexts\CharacterContext.cs" />
     <Compile Include="Contexts\ItemsContext.cs" />
     <Compile Include="Contexts\PlayableClassContext.cs" />
+    <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
     <Compile Include="Mapping\Implementations\SpellsMapper.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Repository\Implementations\ItemsRepository.cs" />
     <Compile Include="Repository\Implementations\NotesRepository.cs" />
     <Compile Include="Repository\Implementations\PlayableClassRepository.cs" />
+    <Compile Include="Repository\Implementations\RaceRepository.cs" />
     <Compile Include="Repository\Implementations\SpellsRepository.cs" />
     <Compile Include="Repository\Implementations\StatsRepository.cs" />
     <Compile Include="Repository\Implementations\SubclassAbilityRepository.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Repository\Interfaces\IItemsRepository.cs" />
     <Compile Include="Repository\Interfaces\INotesRepository.cs" />
     <Compile Include="Repository\Interfaces\IPlayableClassRepository.cs" />
+    <Compile Include="Repository\Interfaces\IRaceRepository.cs" />
     <Compile Include="Repository\Interfaces\ISpellsRepository.cs" />
     <Compile Include="Repository\Interfaces\IStatsRepository.cs" />
     <Compile Include="Repository\Interfaces\ISubclassAbilityRepository.cs" />
@@ -147,10 +150,12 @@
     <Compile Include="UserAccess\Implementations\BaseUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\ClassManagerUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\ItemsManagerUserAccess.cs" />
+    <Compile Include="UserAccess\Implementations\RaceManagerUserAccess.cs" />
     <Compile Include="UserAccess\Implementations\SpellManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IBaseUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IClassManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\IItemsManagerUserAccess.cs" />
+    <Compile Include="UserAccess\Interfaces\IRaceManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\ISpellManagerUserAccess.cs" />
   </ItemGroup>
   <ItemGroup>

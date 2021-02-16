@@ -5,6 +5,7 @@ using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
 using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
+using DnDProject.Entities.Races.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
@@ -237,6 +238,22 @@ namespace DnDProject.Backend.UserAccess.Implementations
             return _worker.SubclassAbilities.GetAbilitiesOfSubclassAtOrBelowLevel(Subclass_id, level);
         }
 
+        public Race GetRace(Guid Race_id)
+        {
+            return _worker.Races.Get(Race_id);
+        }
+        public IEnumerable<Race> GetAllRaces()
+        {
+            return _worker.Races.GetAll();
+        }
+        public RaceAbility GetRaceAbility(Guid RaceAbility_id)
+        {
+            return _worker.Races.GetRaceAbility(RaceAbility_id);
+        }
+        public IEnumerable<RaceAbility> GetAbilitiesOfRace(Guid Race_id)
+        {
+            return _worker.Races.GetAbilitiesOfRace(Race_id);
+        }
         public BaseUserAccess(IUnitOfWork worker)
         {
             _worker = worker;

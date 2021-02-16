@@ -1,6 +1,7 @@
 ﻿using DnDProject.Entities.Character.DataModels;
 using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
+using DnDProject.Entities.Races.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
@@ -75,6 +76,11 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         IEnumerable<SubclassAbility> GetAllAbilitiesOfSubclass(Guid Subbclass_id);
         IEnumerable<SubclassAbility> GetAbilitiesOfSubclassAtOrBelowLevel(Guid Subclass_id, int level);
 
+        Race GetRace(Guid Race_id);
+        IEnumerable<Race> GetAllRaces();
+        RaceAbility GetRaceAbility(Guid RaceAbility_id);
+        IEnumerable<RaceAbility> GetAbilitiesOfRace(Guid Race_id);
+        
         void SaveChanges();
         void SaveChangesAsync();
 

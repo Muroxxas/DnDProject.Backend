@@ -60,5 +60,9 @@ namespace DnDProject.Backend.Repository
         {
             return new SubclassAbilityRepository(playableClassContext);
         }
+        public static IRaceRepository GetRacesRepository(RaceContext raceContext)
+        {
+            return new RaceRepository(raceContext);
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
         private SpellsContext _spellsContext;
         private ItemsContext _itemsContext;
         private PlayableClassContext _playableClassContext;
+        private RaceContext _raceContext;
 
         //By having this ICharacterRepository as a public object, we can enable our services to access it's methods while obscuring the implementation, thus loosely coupling our data access system and our code!
         public ICharacterRepository Characters { get; private set; }
@@ -30,19 +31,20 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
         public IClassAbilityRepository ClassAbilities { get; private set; }
         public ISubclassRepository Subclasses { get; private set; }
         public ISubclassAbilityRepository SubclassAbilities { get; private set; }
+        public IRaceRepository Races { get; private set; }
 
 
         public void Dispose()
         {
-            if(_context != null)
+            if (_context != null)
             {
                 _context.Dispose();
             }
-            if(_spellsContext != null)
+            if (_spellsContext != null)
             {
                 _spellsContext.Dispose();
             }
-            if(_itemsContext != null)
+            if (_itemsContext != null)
             {
                 _itemsContext.Dispose();
             }
@@ -50,44 +52,58 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
             {
                 _playableClassContext.Dispose();
             }
+            if (_raceContext != null)
+            {
+                _raceContext.Dispose();
+            }
         }
 
         public void SaveChanges()
         {
-            if(_context != null)
+            if (_context != null)
             {
                 _context.SaveChanges();
             }
-            if(_spellsContext != null)
+            if (_spellsContext != null)
             {
                 _spellsContext.SaveChanges();
             }
-            if(_itemsContext != null)
+            if (_itemsContext != null)
             {
                 _itemsContext.SaveChanges();
             }
-            if(_playableClassContext != null)
+            if (_playableClassContext != null)
             {
                 _playableClassContext.SaveChanges();
             }
+            if (_raceContext != null)
+            {
+                _raceContext.SaveChanges();
+            }
+
         }
-        public void SaveChangesAsync()
+        //Look into asyncronous programming to make my code more efficient.
+        public async void SaveChangesAsync()
         {
-            if(_context != null)
+            if (_context != null)
             {
                 _context.SaveChangesAsync();
             }
-            if(_spellsContext != null)
+            if (_spellsContext != null)
             {
                 _spellsContext.SaveChangesAsync();
             }
-            if(_itemsContext != null)
+            if (_itemsContext != null)
             {
                 _itemsContext.SaveChangesAsync();
             }
-            if(_playableClassContext != null)
+            if (_playableClassContext != null)
             {
                 _playableClassContext.SaveChangesAsync();
+            }
+            if (_raceContext != null)
+            {
+                _raceContext.SaveChangesAsync();
             }
         }
 
@@ -196,6 +212,32 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
             ClassAbilities = RepositoryFactory.GetClassAbilityRepository(playableClassContext);
             Subclasses = RepositoryFactory.GetSubclassRepository(playableClassContext);
             SubclassAbilities = RepositoryFactory.GetSubclassAbilityRepository(playableClassContext);
+        }
+
+        public UnitOfWork(CharacterContext context, SpellsContext spellsContext, ItemsContext itemsContext, PlayableClassContext playableClassContext, RaceContext raceContext)
+        {
+            _context = context;
+            Characters = RepositoryFactory.GetCharacterRepository(context);
+            HealthRecords = RepositoryFactory.GetHealthRepository(context);
+            CurrencyRecords = RepositoryFactory.GetCurrencyRepository(context);
+            ProficiencyRecords = RepositoryFactory.GetIsProficientRepository(context);
+            Notes = RepositoryFactory.GetNotesRepository(context);
+            Stats = RepositoryFactory.GetStatsRepository(context);
+
+            _spellsContext = spellsContext;
+            Spells = RepositoryFactory.GetSpellsRepository(spellsContext);
+
+            _itemsContext = itemsContext;
+            Items = RepositoryFactory.GetItemsRepository(itemsContext);
+
+            _playableClassContext = playableClassContext;
+            Classes = RepositoryFactory.GetPlayableClassRepository(playableClassContext);
+            ClassAbilities = RepositoryFactory.GetClassAbilityRepository(playableClassContext);
+            Subclasses = RepositoryFactory.GetSubclassRepository(playableClassContext);
+            SubclassAbilities = RepositoryFactory.GetSubclassAbilityRepository(playableClassContext);
+
+            _raceContext = raceContext;
+            Races = RepositoryFactory.GetRacesRepository(raceContext);
         }
     }
 }

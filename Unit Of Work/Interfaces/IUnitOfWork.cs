@@ -21,6 +21,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Interfaces
         IClassAbilityRepository ClassAbilities { get; }
         ISubclassRepository Subclasses { get; }
         ISubclassAbilityRepository SubclassAbilities { get; }
+        IRaceRepository Races { get; }
         void SaveChanges();
         void SaveChangesAsync();
     }

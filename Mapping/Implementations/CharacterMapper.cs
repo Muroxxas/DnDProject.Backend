@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using DnDProject.Backend.Mapping.Implementations.Generic;
+using DnDProject.Entities.Races.DataModels;
+using DnDProject.Entities.Races.ViewModels.PartialViewModels.ComponentModels;
+using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
 
 namespace DnDProject.Backend.Mapping.Implementations
 {
-    public class CharacterMapper : ICharacterMapper
+    public static class CharacterMapper
     {
         //Create
-        public Character mapCharacterVMToNewEntity(CharacterVM vm)
+        public static Character mapCharacterVMToNewEntity(CharacterVM vm)
         {
             Character character = new Character();
 
@@ -31,7 +35,7 @@ namespace DnDProject.Backend.Mapping.Implementations
 
 
         //Read
-        public CharacterVM mapCharacterToCharacterVM(Character m)
+        public static CharacterVM mapCharacterToCharacterVM(Character m)
         {
             CharacterVM vm = new CharacterVM();
 
@@ -46,50 +50,36 @@ namespace DnDProject.Backend.Mapping.Implementations
 
             return vm;
         }
+        public static RaceListModel mapRaceToRaceListModel(Race model)
+        {
+            ReadModelMapper<Race, RaceListModel> mapper = new ReadModelMapper<Race, RaceListModel>();
+            RaceListModel lm = new RaceListModel();
+            mapper.mapDataModelToViewModel(model, lm);
 
+            return lm;
+        }
+        public static IsProficientCM mapIsProficientToIsProficientCM(IsProficient m)
+        {
+            ReadModelMapper<IsProficient, IsProficientCM> mapper = new ReadModelMapper<IsProficient, IsProficientCM>();
+            IsProficientCM cm = new IsProficientCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
+        public static NoteCM mapNoteToNoteCM(Note m)
+        {
+            ReadModelMapper<Note, NoteCM> mapper = new ReadModelMapper<Note, NoteCM>();
+            NoteCM cm = new NoteCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
 
         //Update
-        public void mapCharacterVMToExistingEntity(CharacterVM vm, Character m)
-        {
-            //Map all items from CharacterVM to the an existing DB entity for a character's Character. Does NOT map any source fields if the source field is null.
-            var CharacterVM_To_Entity = new MapperConfiguration(
-                cfg => cfg.CreateMap<CharacterVM, Character>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
-            );
-            var mapper = CharacterVM_To_Entity.CreateMapper();
 
-            mapper.Map<CharacterVM, Character>(vm, m);
+        public static void mapNoteCMOverNote(NoteCM updatedRecord, Note entity)
+        {
+            UpdateModelMapper<NoteCM, Note> mapper = new UpdateModelMapper<NoteCM,Note>();
+            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
+        }
 
-        }
-        public void mapUpdatedCharacterOverEntity(Character updatedRecord, Character entity)
-        {
-            UpdateModelMapper<Character> mapper = new UpdateModelMapper<Character>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
-        public void mapUpdatedProficiencyRecordOverEntity(IsProficient updatedRecord, IsProficient entity)
-        {
-            UpdateModelMapper<IsProficient> mapper = new UpdateModelMapper<IsProficient>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
-        public void mapUpdatedHealthRecordOverEntity(Health updatedRecord, Health entity)
-        {
-            UpdateModelMapper<Health> mapper = new UpdateModelMapper<Health>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
-        public void mapUpdatedStatsRecordOverEntity(Stats updatedRecord, Stats entity)
-        {
-            UpdateModelMapper<Stats> mapper = new UpdateModelMapper<Stats>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
-        public void mapUpdatedCurrencyRecordOverEntity(Currency updatedRecord, Currency entity)
-        {
-            UpdateModelMapper<Currency> mapper = new UpdateModelMapper<Currency>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
-        public void mapUpdatedNoteOverEntity(Note updatedRecord, Note entity)
-        {
-            UpdateModelMapper<Note> mapper = new UpdateModelMapper<Note>();
-            mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
-        }
     }
 }

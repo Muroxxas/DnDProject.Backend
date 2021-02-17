@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Mapping.Implementations
 {
-    public class SpellsMapper : ISpellsMapper
+    public class SpellsMapper
     {
     }
 }

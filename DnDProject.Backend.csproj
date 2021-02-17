@@ -110,11 +110,12 @@
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
+    <Compile Include="Mapping\Implementations\Generic\ReadModelMapper.cs" />
     <Compile Include="Mapping\Implementations\SpellsMapper.cs" />
-    <Compile Include="Mapping\Implementations\UpdateModelMapper.cs" />
-    <Compile Include="Mapping\Interfaces\ICharacterMapper.cs" />
-    <Compile Include="Mapping\Interfaces\ISpellsMapper.cs" />
-    <Compile Include="Mapping\Interfaces\IUpdateModelMapper.cs" />
+    <Compile Include="Mapping\Implementations\Generic\UpdateModelMapper.cs" />
+    <Compile Include="Mapping\Interfaces\Generic\IReadModelMapper.cs" />
+    <Compile Include="Mapping\Interfaces\Generic\IUpdateModelMapper.cs" />
+    <Compile Include="Mapping\Mapping Extensions\IgnoreMappedFrom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Implementations\CharacterRepository.cs" />
     <Compile Include="Repository\Implementations\ClassAbilityRepository.cs" />
@@ -145,6 +146,8 @@
     <Compile Include="Repository\Interfaces\ISubclassAbilityRepository.cs" />
     <Compile Include="Repository\Interfaces\ISubclassRepository.cs" />
     <Compile Include="Repository\RepositoryFactory.cs" />
+    <Compile Include="Services\Implementations\CreateCharacter.cs" />
+    <Compile Include="Services\Interfaces\ICreateCharacter.cs" />
     <Compile Include="Unit Of Work\Implementations\UnitOfWork.cs" />
     <Compile Include="Unit Of Work\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UserAccess\Implementations\BaseUserAccess.cs" />
@@ -158,10 +161,7 @@
     <Compile Include="UserAccess\Interfaces\IRaceManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\ISpellManagerUserAccess.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Implementations\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

@@ -8,10 +8,10 @@ As I discover, study, design, and implement new design patterns, tools, and othe
 If I discover a major design pattern or tool that I should have implemented, expect a new branch to be created as I practice and attempt to gain experience with this tool. 
 
 ## Current work
-As of Feb. 10, 2021, I am currently implementing classes using the Repository Pattern and Unit of Access Pattern for data access, as well as to make the system overall more easily unit tested. 
-Laid over top of the Unit of Work are various classes of the User Access namespace. These classes will act as facades for the different access capabilities different types of users will have to the database.
-For example, standard users will be capable of getting the information regarding a spell, or having their character learn a spell. However, only Spell Managers can create spells.
+As of Feb. 15, 2021, I am currently working on redesigning and reorganizing my business logic to work with the user access proxy. Specifically, I am working on the Character creation implementation. Before I finish this, I will most likely switch to working on moving and updating content creation implementations and view models, to test the waters. 
 
+## Finished work
+As of Feb. 12, 2021, I have finished implementing a Repository Pattern and Unit of Access Pattern for data access, as well as a base Proxy pattern for controlling user access. The access this proxy pattern has may change at some later point
 
 View the UML diagram for the data access system [here.](https://drive.google.com/file/d/1jHCdhodi_AWYTLdqENzGg1fTXOY5xlLs/view?usp=sharing)
 ## Planned Work

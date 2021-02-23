@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Repository.Interfaces
 {
-    public interface ICharacterRepository : IRepository<Character>
+    public interface ICharacterRepository : IRepository<CharacterDM>
     {
-        IEnumerable<Character> GetCharactersOwnedBy(Guid User_id);
+        IEnumerable<CharacterDM> GetCharactersOwnedBy(Guid User_id);
     }
 }

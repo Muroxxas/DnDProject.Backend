@@ -11,45 +11,43 @@ using DnDProject.Backend.Mapping.Implementations.Generic;
 using DnDProject.Entities.Races.DataModels;
 using DnDProject.Entities.Races.ViewModels.PartialViewModels.ComponentModels;
 using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
+using DnDProject.Backend.Mapping.Interfaces.Generic;
 
 namespace DnDProject.Backend.Mapping.Implementations
 {
     public static class CharacterMapper
     {
         //Create
-        public static Character mapCharacterVMToNewEntity(CharacterVM vm)
+        public static CharacterDM mapCharacterVMToNewEntity(CharacterVM vm)
         {
-            Character character = new Character();
 
-            //Map all items from the provided VM to a new Character entity. Does NOT map any source fields if the source field is null.
-            var CharacterVM_To_New_Character = new MapperConfiguration(
-                cfg => cfg.CreateMap<CharacterVM, Character>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
-                );
-            var mapper = CharacterVM_To_New_Character.CreateMapper();
-
-            mapper.Map<CharacterVM, Character>(vm, character);
-
-            return character;
+            ICreateModelMapper<CharacterVM, CharacterDM> mapper = new CreateModelMapper<CharacterVM, CharacterDM>();
+            return mapper.mapViewModelToDataModel(vm);
+        }
+        public static Health mapCombatCMToNewHealthEntity(CombatCM cm)
+        {
+            ICreateModelMapper<CombatCM, Health> mapper = new CreateModelMapper<CombatCM, Health>();
+            return mapper.mapViewModelToDataModel(cm);
+        }
+        public static Stats mapStatsCMToNewEntity(StatsCM cm)
+        {
+            ICreateModelMapper<StatsCM, Stats> mapper = new CreateModelMapper<StatsCM, Stats>();
+            return mapper.mapViewModelToDataModel(cm);
+        }
+            
+        public static Currency mapCurrencyCMToNewEntity(MoneyCM cm)
+        {
+            ICreateModelMapper<MoneyCM, Currency> mapper = new CreateModelMapper<MoneyCM, Currency>();
+            return mapper.mapViewModelToDataModel(cm);
+        }
+        public static Note mapNoteCMToNewEntity(NoteCM cm)
+        {
+            ICreateModelMapper<NoteCM, Note> mapper = new CreateModelMapper<NoteCM, Note>();
+            return mapper.mapViewModelToDataModel(cm);
         }
 
 
         //Read
-        public static CharacterVM mapCharacterToCharacterVM(Character m)
-        {
-            CharacterVM vm = new CharacterVM();
-
-            var Character_To_CharacterVM = new MapperConfiguration(
-                cfg => cfg.CreateMap<Character, CharacterVM>()
-                .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null))
-                );
-
-            var mapper = Character_To_CharacterVM.CreateMapper();
-
-            mapper.Map<Character, CharacterVM>(m, vm);
-
-            return vm;
-        }
         public static RaceListModel mapRaceToRaceListModel(Race model)
         {
             ReadModelMapper<Race, RaceListModel> mapper = new ReadModelMapper<Race, RaceListModel>();

@@ -109,6 +109,13 @@
     <Compile Include="Contexts\PlayableClassContext.cs" />
     <Compile Include="Contexts\RaceContext.cs" />
     <Compile Include="Contexts\SpellsContext.cs" />
+    <Compile Include="Mapping\Implementations\Generic\CreateModelMapper.cs" />
+    <Compile Include="Mapping\Interfaces\Generic\ICreateModelMapper.cs" />
+    <Compile Include="Processors\Implementations\CharacterCommonFunctions.cs" />
+    <Compile Include="Processors\Implementations\UpdateCharacter.cs" />
+    <Compile Include="Processors\Interfaces\ICharacterCommonFunctions.cs" />
+    <Compile Include="Services\Implementations\CharacterServices.cs" />
+    <Compile Include="Services\Interfaces\ICharacterServices.cs" />
     <Compile Include="Mapping\Implementations\CharacterMapper.cs" />
     <Compile Include="Mapping\Implementations\Generic\ReadModelMapper.cs" />
     <Compile Include="Mapping\Implementations\SpellsMapper.cs" />
@@ -146,8 +153,9 @@
     <Compile Include="Repository\Interfaces\ISubclassAbilityRepository.cs" />
     <Compile Include="Repository\Interfaces\ISubclassRepository.cs" />
     <Compile Include="Repository\RepositoryFactory.cs" />
-    <Compile Include="Services\Implementations\CreateCharacter.cs" />
-    <Compile Include="Services\Interfaces\ICreateCharacter.cs" />
+    <Compile Include="Processors\Implementations\CreateCharacter.cs" />
+    <Compile Include="Processors\Interfaces\ICreateCharacter.cs" />
+    <Compile Include="Processors\Interfaces\IUpdateCharacter.cs" />
     <Compile Include="Unit Of Work\Implementations\UnitOfWork.cs" />
     <Compile Include="Unit Of Work\Interfaces\IUnitOfWork.cs" />
     <Compile Include="UserAccess\Implementations\BaseUserAccess.cs" />

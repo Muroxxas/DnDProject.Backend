@@ -13,8 +13,8 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 {
     public interface IBaseUserAccess
     {
-        void AddCharacter(Character newCharacter);
-        Character GetCharacter(Guid Character_id);
+        void AddCharacter(CharacterDM newCharacter);
+        CharacterDM GetCharacter(Guid Character_id);
         void DeleteCharacter(Guid Character_id);
 
         void AddProficiencyRecord(IsProficient proficiencies);
@@ -38,9 +38,11 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
         Spell GetSpell(Guid Spell_id);
         Material GetSpellMaterials(Guid SPell_id);
+        Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id);
         IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id);
         IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id);
         IEnumerable<Spell> GetSpellsOfSchool(Guid School_id);
+        IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id);
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
         void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);

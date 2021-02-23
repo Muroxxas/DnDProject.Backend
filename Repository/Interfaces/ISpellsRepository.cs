@@ -17,6 +17,8 @@ namespace DnDProject.Backend.Repository.Interfaces
 
         //Retrieve the spells that can be cast by a specific class. 
         IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id);
+        IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id);
+        Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id);
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
 

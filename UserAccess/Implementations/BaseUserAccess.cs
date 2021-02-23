@@ -19,11 +19,11 @@ namespace DnDProject.Backend.UserAccess.Implementations
     {
         private IUnitOfWork _worker { get; set; }
 
-        public void AddCharacter(Character character)
+        public void AddCharacter(CharacterDM character)
         {
             _worker.Characters.Add(character);
         }
-        public Character GetCharacter(Guid Character_id)
+        public CharacterDM GetCharacter(Guid Character_id)
         {
 
             return _worker.Characters.Get(Character_id);
@@ -31,7 +31,7 @@ namespace DnDProject.Backend.UserAccess.Implementations
 
         public void DeleteCharacter(Guid Character_id)
         {
-            Character foundCharacter = _worker.Characters.Get(Character_id);
+            CharacterDM foundCharacter = _worker.Characters.Get(Character_id);
             _worker.Characters.Remove(foundCharacter);
         }
 
@@ -113,7 +113,10 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.Spells.GetSpellMaterials(Spell_id);
         }
-
+        public Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id)
+        {
+            return _worker.Spells.GetKnownSpellRecord(Character_id, Spell_id);
+        }
         public IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id)
         {
             return _worker.Spells.GetSpellsKnownBy(Character_id);
@@ -125,6 +128,10 @@ namespace DnDProject.Backend.UserAccess.Implementations
         public IEnumerable<Spell> GetSpellsOfSchool(Guid School_id)
         {
             return _worker.Spells.GetSpellsOfSchool(School_id);
+        }
+        public IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id)
+        {
+            return _worker.Spells.GetIdsOfClassesThatCanCastSpell(Spell_id);
         }
 
 

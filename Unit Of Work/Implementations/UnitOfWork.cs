@@ -83,7 +83,7 @@ namespace DnDProject.Backend.Unit_Of_Work.Implementations
 
         }
         //Look into asyncronous programming to make my code more efficient.
-        public async void SaveChangesAsync()
+        public void SaveChangesAsync()
         {
             if (_context != null)
             {

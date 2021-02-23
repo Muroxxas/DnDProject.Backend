@@ -30,6 +30,7 @@ namespace DnDProject.Backend.Repository.Implementations
 
             return knownSpells;
         }
+        
 
         public IEnumerable<Spell> GetSpellsOfSchool(Guid School_id)
         {
@@ -51,7 +52,22 @@ namespace DnDProject.Backend.Repository.Implementations
 
             return knownSpells;
         }
+        public IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id)
+        {
+            IEnumerable<Spell_Class> CastableByRecords = spellsContext.CastableByRecords.Where(x => x.Spell_id == Spell_id);
+            List<Guid> guids = new List<Guid>();
 
+            foreach(Spell_Class record in CastableByRecords)
+            {
+                guids.Add(record.Class_id);
+            }
+            return guids;
+        }
+
+        public Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id)
+        {
+            return spellsContext.KnownSpells.Where(x => x.Character_id == Character_id && x.Spell_id == Spell_id).FirstOrDefault();
+        }
         public void CharacterLearnsSpell(Guid Character_id, Guid Spell_id)
         {
             Spell_Character learnedSpell = new Spell_Character

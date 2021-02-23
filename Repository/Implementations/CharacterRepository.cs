@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Repository.Implementations
 {
-    public class CharacterRepository : Repository<Character>, ICharacterRepository
+    public class CharacterRepository : Repository<CharacterDM>, ICharacterRepository
     {
         //cast the context inherited from the generic Repository as a CharacterContext.
         public CharacterContext _characterContext { get { return Context as CharacterContext; } }
         
-        public IEnumerable<Character> GetCharactersOwnedBy(Guid User_id)
+        public IEnumerable<CharacterDM> GetCharactersOwnedBy(Guid User_id)
         {
-            IEnumerable<Character> foundCharacters = (from character in _characterContext.Characters
+            IEnumerable<CharacterDM> foundCharacters = (from character in _characterContext.Characters
                                                       where character.User_id == User_id
                                                       select character).ToList();
 

@@ -111,8 +111,10 @@
     <Compile Include="Contexts\SpellsContext.cs" />
     <Compile Include="Mapping\Implementations\Generic\CreateModelMapper.cs" />
     <Compile Include="Mapping\Interfaces\Generic\ICreateModelMapper.cs" />
+    <Compile Include="Processors\Implementations\CharacterCMBuilder.cs" />
     <Compile Include="Processors\Implementations\CharacterCommonFunctions.cs" />
     <Compile Include="Processors\Implementations\UpdateCharacter.cs" />
+    <Compile Include="Processors\Interfaces\ICharacterCMBuilder.cs" />
     <Compile Include="Processors\Interfaces\ICharacterCommonFunctions.cs" />
     <Compile Include="Services\Implementations\CharacterServices.cs" />
     <Compile Include="Services\Interfaces\ICharacterServices.cs" />

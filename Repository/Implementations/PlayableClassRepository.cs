@@ -62,17 +62,10 @@ namespace DnDProject.Backend.Repository.Implementations
             }
             _classContext.KnownClasses.AddRange(records);
         }
-        public void CharacterLearnsClass(Guid Character_id, Guid Class_id, Guid Subclass_id)
+        public void CharacterLearnsClass(Character_Class_Subclass record)
         {
-            Character_Class_Subclass learnedClassRecord = new Character_Class_Subclass
-            {
-                Character_id = Character_id,
-                Class_id = Class_id,
-                Subclass_id = Subclass_id,
-                ClassLevel = 1,
-                RemainingHitDice = 1
-            };
-            _classContext.KnownClasses.Add(learnedClassRecord);
+
+            _classContext.KnownClasses.Add(record);
         }
         public void CharacterForgetsClass(Guid Character_id, Guid Class_id)
         {

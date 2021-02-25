@@ -37,8 +37,10 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         void DeleteNote(Guid Note_id);
 
         Spell GetSpell(Guid Spell_id);
-        Material GetSpellMaterials(Guid SPell_id);
+        Material GetSpellMaterials(Guid Spell_id);
+        School GetSchool(Guid School_id);
         Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id);
+        IEnumerable<Spell_Character> GetKnownSpellRecordsForCharacter(Guid Character_id);
         IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id);
         IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id);
         IEnumerable<Spell> GetSpellsOfSchool(Guid School_id);
@@ -50,6 +52,8 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
         Item GetItem(Guid Item_id);
         IEnumerable<Item> GetItemsHeldBy(Guid Character_id);
+        Character_Item GetHeldItemRecord(Guid Character_id, Guid Item_id);
+        IEnumerable<Character_Item> GetHeldItemRecordsForCharacter(Guid Character_id);
         IEnumerable<Tag> GetAllTags();
         IEnumerable<Tag> GetTagsForItem(Guid Item_id);
 
@@ -61,7 +65,7 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         IEnumerable<PlayableClass> GetAllPlayableClasses();
         IEnumerable<PlayableClass> GetClassesOfCharacter(Guid Character_id);
         Character_Class_Subclass GetKnownClassRecordOfCharaterAndClass(Guid Character_id, Guid Class_id);
-        void CharacterLearnsClass(Guid Character_id, Guid Class_id);
+        void CharacterLearnsClass(Character_Class_Subclass record);
         void CharacterLearnsClasses(Guid Character_id, List<Guid> Class_ids);
         void CharacterForgetsClass(Guid Character_id, Guid Class_id);
 

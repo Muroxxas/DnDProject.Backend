@@ -19,6 +19,9 @@ namespace DnDProject.Backend.Repository.Interfaces
         IEnumerable<Spell> GetSpellsCastableBy(Guid Class_id);
         IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id);
         Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id);
+        IEnumerable<Spell_Character> GetKnownSpellRecordsForCharacter(Guid Character_id);
+
+        School GetSchool(Guid School_id);
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
 

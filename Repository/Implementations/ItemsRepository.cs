@@ -21,10 +21,18 @@ namespace DnDProject.Backend.Repository.Implementations
                 Character_id = Character_id,
                 Item_id = Item_id,
                 isEquipped = false,
-                IsAttuned = true,
+                IsAttuned = false,
                 count = 1
             };
             itemsContext.HeldItems.Add(newHeldItem);
+        }
+        public Character_Item GetHeldItemRecord(Guid Character_id, Guid Item_id)
+        {
+            return itemsContext.HeldItems.Where(x => x.Character_id == Character_id && x.Item_id == Item_id).FirstOrDefault();
+        }
+        public IEnumerable<Character_Item> GetHeldItemRecordsForCharacter(Guid Character_id)
+        {
+            return itemsContext.HeldItems.Where(x => x.Character_id == Character_id).ToList();
         }
         public void CharacterLosesItem(Guid Character_id, Guid Item_id)
         {

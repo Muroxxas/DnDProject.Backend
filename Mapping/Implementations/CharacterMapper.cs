@@ -12,6 +12,8 @@ using DnDProject.Entities.Races.DataModels;
 using DnDProject.Entities.Races.ViewModels.PartialViewModels.ComponentModels;
 using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
 using DnDProject.Backend.Mapping.Interfaces.Generic;
+using DnDProject.Entities.Items.DataModels;
+using DnDProject.Entities.Spells.DataModels;
 
 namespace DnDProject.Backend.Mapping.Implementations
 {
@@ -70,7 +72,47 @@ namespace DnDProject.Backend.Mapping.Implementations
             mapper.mapDataModelToViewModel(m, cm);
             return cm;
         }
+        public static HeldItemRowCM mapItemToHeldItemRowCM(Item m)
+        {
+            ReadModelMapper<Item, HeldItemRowCM> mapper = new ReadModelMapper<Item, HeldItemRowCM>();
+            HeldItemRowCM cm = new HeldItemRowCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
+        public static void mapItemToHeldItemRowCM(Item m, HeldItemRowCM cm)
+        {
+            ReadModelMapper<Item, HeldItemRowCM> mapper = new ReadModelMapper<Item, HeldItemRowCM>();
 
+            mapper.mapDataModelToViewModel(m, cm);
+
+        }
+        public static HeldItemRowCM mapHeldItemRecordToHeldItemRowCM(Character_Item m)
+        {
+            ReadModelMapper<Character_Item, HeldItemRowCM> mapper = new ReadModelMapper<Character_Item, HeldItemRowCM>();
+            HeldItemRowCM cm= new HeldItemRowCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
+        public static void mapHeldItemRecordToHeldItemRowCM(Character_Item m, HeldItemRowCM cm)
+        {
+            ReadModelMapper<Character_Item, HeldItemRowCM> mapper = new ReadModelMapper<Character_Item, HeldItemRowCM>();
+
+            mapper.mapDataModelToViewModel(m, cm);
+
+        }
+
+        public static KnownSpellRowCM mapSpellToKnownSpellRowCM(Spell m)
+        {
+            ReadModelMapper<Spell, KnownSpellRowCM> mapper = new ReadModelMapper<Spell, KnownSpellRowCM>();
+            KnownSpellRowCM cm = new KnownSpellRowCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
+        public static void mapSpellToKnownSpellRowCM(Spell m, KnownSpellRowCM cm)
+        {
+            ReadModelMapper<Spell, KnownSpellRowCM> mapper = new ReadModelMapper<Spell, KnownSpellRowCM>();
+            mapper.mapDataModelToViewModel(m, cm);
+        }
         //Update
 
         public static void mapNoteCMOverNote(NoteCM updatedRecord, Note entity)

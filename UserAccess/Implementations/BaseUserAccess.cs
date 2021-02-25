@@ -113,9 +113,17 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.Spells.GetSpellMaterials(Spell_id);
         }
+        public School GetSchool(Guid School_id)
+        {
+            return _worker.Spells.GetSchool(School_id);
+        }
         public Spell_Character GetKnownSpellRecord(Guid Character_id, Guid Spell_id)
         {
             return _worker.Spells.GetKnownSpellRecord(Character_id, Spell_id);
+        }
+        public IEnumerable<Spell_Character> GetKnownSpellRecordsForCharacter(Guid Character_id)
+        {
+            return _worker.Spells.GetKnownSpellRecordsForCharacter(Character_id);
         }
         public IEnumerable<Spell> GetSpellsKnownBy(Guid Character_id)
         {
@@ -160,6 +168,14 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.Items.Get(Item_id);
         }
+        public Character_Item GetHeldItemRecord(Guid Character_id, Guid Item_id)
+        {
+            return _worker.Items.GetHeldItemRecord(Character_id, Item_id);
+        }
+        public IEnumerable<Character_Item> GetHeldItemRecordsForCharacter(Guid Character_id)
+        {
+            return _worker.Items.GetHeldItemRecordsForCharacter(Character_id);
+        }
         public IEnumerable<Item> GetItemsHeldBy(Guid Character_id)
         {
             return _worker.Items.GetItemsHeldBy(Character_id);
@@ -189,9 +205,9 @@ namespace DnDProject.Backend.UserAccess.Implementations
         {
             return _worker.Classes.GetKnownClassRecordOfCharacterAndClass(Character_id, Class_id);
         }
-        public void CharacterLearnsClass(Guid Character_id, Guid Class_id)
+        public void CharacterLearnsClass(Character_Class_Subclass record)
         {
-            _worker.Classes.CharacterLearnsClass(Character_id, Class_id);
+            _worker.Classes.CharacterLearnsClass(record);
         }
         public void CharacterLearnsClasses(Guid Character_id, List<Guid> Class_ids)
         {

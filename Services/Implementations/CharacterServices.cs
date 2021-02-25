@@ -16,8 +16,7 @@ namespace DnDProject.Backend.Services.Implementations
     {
         private ICreateCharacter _creator;
         private IUpdateCharacter _updater;
-        private ICharacterCommonFunctions _commons;
-
+        private ICharacterCMBuilder _builder;
         public CharacterVM CreateCharacterGET()
         {
            return _creator.CreateCharacterGET();
@@ -62,6 +61,20 @@ namespace DnDProject.Backend.Services.Implementations
         {
             throw new NotImplementedException();
         }
+        public HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id)
+        {
+            HeldItemRowCM cm = _builder.buildNewHeldItemRowCM(Item_id);
+            cm.Index = Index;
+            return cm;
+        }
+        public KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id)
+        {
+            KnownSpellRowCM cm = _builder.buildKnownSpellRowCM(Spell_id);
+            cm.Index = Index;
+            return cm;
+        }
+
+        //------Create records ------
         public void ExistingCharacterLearnsSpell(Guid user_id, Guid character_id, Guid spell_id)
         {
             _updater.ExistingCharacterLearnsSpell(user_id, character_id, spell_id);
@@ -69,7 +82,7 @@ namespace DnDProject.Backend.Services.Implementations
         }
 
 
-        //------Delete components
+        //------Delete records
         public void CharacterForgetsClass(Guid user_id, Guid character_id, Guid Class_id)
         {
             throw new NotImplementedException();
@@ -87,10 +100,11 @@ namespace DnDProject.Backend.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater)
+        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder )
         {
             _creator = creator;
             _updater = updater;
+            _builder = builder;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace DnDProject.Backend.Repository.Interfaces
 
         void CharacterLearnsClass(Guid Character_id, Guid Class_id);
         void CharacterLearnsClasses(Guid Character_id, IEnumerable<Guid> Class_ids);
-        void CharacterLearnsClass(Guid Character_id, Guid Class_id, Guid Subclass_id);
+        void CharacterLearnsClass(Character_Class_Subclass record);
         void CharacterForgetsClass(Guid Character_id, Guid Class_id);
     }
 }

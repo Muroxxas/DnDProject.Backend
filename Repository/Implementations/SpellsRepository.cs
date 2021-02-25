@@ -68,6 +68,15 @@ namespace DnDProject.Backend.Repository.Implementations
         {
             return spellsContext.KnownSpells.Where(x => x.Character_id == Character_id && x.Spell_id == Spell_id).FirstOrDefault();
         }
+        public IEnumerable<Spell_Character> GetKnownSpellRecordsForCharacter(Guid Character_id)
+        {
+            return spellsContext.KnownSpells.Where(x => x.Character_id == Character_id).ToList();
+        }
+        public School GetSchool(Guid School_id)
+        {
+            return spellsContext.Schools.Find(School_id);
+        }
+
         public void CharacterLearnsSpell(Guid Character_id, Guid Spell_id)
         {
             Spell_Character learnedSpell = new Spell_Character

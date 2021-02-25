@@ -13,6 +13,8 @@ namespace DnDProject.Backend.Processors.Implementations
     public class UpdateCharacter : IUpdateCharacter
     {
         IBaseUserAccess _userAccess;
+        ICharacterCommonFunctions _commons;
+        ICharacterCMBuilder _builder;
 
         public void ExistingCharacterLearnsSpell(Guid user_id, Guid Character_id, Guid Spell_id)
         {
@@ -49,9 +51,25 @@ namespace DnDProject.Backend.Processors.Implementations
                 return false;
             }
         }
-        public UpdateCharacter(IBaseUserAccess userAccess)
+
+        private bool noteExists(Guid note_id, Guid Character_id)
+        {
+            Note foundNote = _userAccess.GetNote(note_id);
+            if(foundNote != null && foundNote.Character_id == Character_id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public UpdateCharacter(IBaseUserAccess userAccess, ICharacterCommonFunctions commons, ICharacterCMBuilder builder)
         {
             _userAccess = userAccess;
+            _commons = commons;
+            _builder = builder;
+
         }
     }
 }

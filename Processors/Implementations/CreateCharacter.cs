@@ -22,6 +22,7 @@ namespace DnDProject.Backend.Processors.Implementations
     public class CreateCharacter : ICreateCharacter
     {
         IBaseUserAccess _userAccess;
+        ICharacterCommonFunctions _commons;
 
         public CharacterVM CreateCharacterGET()
         {
@@ -71,37 +72,36 @@ namespace DnDProject.Backend.Processors.Implementations
 
         private void LearnSpells(CharacterVM vm, Guid Character_id)
         {
-            foreach(KnownSpellCM knownSpell in vm.SpellsTab.KnownSpells)
+            List<Guid> learnedSpells = new List<Guid>();
+            foreach (KnownSpellCM knownSpell in vm.SpellsTab.KnownSpells)
             {
                 Guid spell_id = knownSpell.Spell_id;
-                Spell foundSpell = _userAccess.GetSpell(spell_id);
 
-                if(foundSpell != null)
+                if (_commons.spellExists(spell_id))
                 {
                     List<Guid> classesThatCanCast = _userAccess.GetIdsOfClassesThatCanCastSpell(spell_id).ToList();
-                    
                     foreach(Guid selectedClass in vm.PrimaryTab.SelectedClasses)
                     {
-                        if (classesThatCanCast.Contains(selectedClass)){
-                            _userAccess.CharacterLearnsSpell(Character_id, foundSpell.Spell_id);
+                        if (_commons.spellCanBeCastByClass(spell_id, selectedClass) && learnedSpells.Contains(spell_id) == false)
+                        {
+                            _userAccess.CharacterLearnsSpell(Character_id, spell_id);
+                            learnedSpells.Add(spell_id);
+                            break;
                         }
                     }
-                }
-                else 
-                {
-                    continue;
                 }
             }
         }
         private void SetInventory(CharacterVM vm, Guid Character_id)
         {
+            List<Guid> obtainedItems = new List<Guid>();
             foreach(HeldItemCM heldItem in vm.InventoryTab.Items)
             {
                 Guid item_id = heldItem.Item_id;
-                Item foundItem = _userAccess.GetItem(item_id);
-                if(foundItem != null)
+                if(_commons.itemExists(item_id) && obtainedItems.Contains(item_id) == false)
                 {
                     _userAccess.CharacterObtainsItem(Character_id, item_id);
+                    obtainedItems.Add(item_id);
                 }
             }
         }
@@ -195,9 +195,11 @@ namespace DnDProject.Backend.Processors.Implementations
              
         }
 
-        public CreateCharacter(IBaseUserAccess userAccess)
+        public CreateCharacter(IBaseUserAccess userAccess, ICharacterCommonFunctions commons)
         {
             _userAccess = userAccess;
+            _commons = commons;
+
         }
     }
 }

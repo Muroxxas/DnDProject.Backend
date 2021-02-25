@@ -14,6 +14,9 @@ namespace DnDProject.Backend.Repository.Interfaces
         void CharacterLosesItem(Guid Character_id, Guid Item_id);
         IEnumerable<Item> GetItemsHeldBy(Guid Character_id);
 
+        Character_Item GetHeldItemRecord(Guid Character_id, Guid Item_id);
+        IEnumerable<Character_Item> GetHeldItemRecordsForCharacter(Guid Character_id);
+
         IEnumerable<Tag> GetAllTags();
         IEnumerable<Tag> GetTagsForItem(Guid Item_id);
         void SetTagForItem(Guid item_id, Guid Tag_id);

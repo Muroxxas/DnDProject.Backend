@@ -25,18 +25,23 @@ namespace DnDProject.Backend.Services.Interfaces
 
         CharacterSelectVM SelectCharacterGET(Guid user_id);
 
-        //------Create-----
+        //------Create Components-----
         KnownClassCM GetBlankKnownClassComponent(int Index);
         void CharacterObtainsItem(Guid user_id, Guid character_id, Guid spell_id);
         JsonResult GetBlankNoteComponent(int Index);
-        void ExistingCharacterLearnsSpell(Guid user_id, Guid Character_id, Guid Spell_id);
+        HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);
+        KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id);
 
+        //------Create Records ------
+        void ExistingCharacterLearnsSpell(Guid user_id, Guid Character_id, Guid Spell_id);
 
         //------Delete------
         void CharacterForgetsClass(Guid user_id, Guid character_id, Guid Class_id);
         void CharacterLosesItem(Guid user_id, Guid character_id, Guid Item_id);
         void DeleteNote(Guid user_id, Guid character_id, Guid Note_id);
         void CharacterForgetsSpell(Guid user_id, Guid character_id, Guid spell_id);
+
+
 
 
 

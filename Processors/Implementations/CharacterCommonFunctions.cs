@@ -17,6 +17,26 @@ namespace DnDProject.Backend.Processors.Implementations
     {
         private IBaseUserAccess _userAccess;
 
+
+        //------Create------
+        public void addHeldItemToDb(Guid Character_id, Guid Item_id)
+        {
+            _userAccess.CharacterObtainsItem(Character_id, Item_id);
+        }
+        public void characterLearnsSpell(Guid Character_id, Guid Spell_id)
+        {
+            _userAccess.CharacterLearnsSpell(Character_id, Spell_id);
+        }
+        public void addNote(Note note)
+        {
+            _userAccess.AddNote(note);
+        }
+        public void characterLearnsClass(Character_Class_Subclass record)
+        {
+            _userAccess.CharacterLearnsClass(record);
+        }
+
+        //------Read------
         public bool spellExists(Guid Spell_id)
         {
             Spell foundSpell = _userAccess.GetSpell(Spell_id);
@@ -82,6 +102,10 @@ namespace DnDProject.Backend.Processors.Implementations
             }
         }
 
+
+
+
+        //------Delete------
         public KnownSpellCM[] removeNonExistantSpellCMFromKnownSpells(KnownSpellCM[] knownSpellCMs, Guid falseSpell_id)
         {
             List<KnownSpellCM> listOfCM = knownSpellCMs.ToList();

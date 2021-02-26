@@ -106,10 +106,10 @@ namespace DnDProject.Backend.Processors.Implementations
 
 
         //------Delete------
-        public KnownSpellCM[] removeNonExistantSpellCMFromKnownSpells(KnownSpellCM[] knownSpellCMs, Guid falseSpell_id)
+        public KnownSpellRowCM[] removeNonExistantSpellCMFromKnownSpells(KnownSpellRowCM[] knownSpellCMs, Guid falseSpell_id)
         {
-            List<KnownSpellCM> listOfCM = knownSpellCMs.ToList();
-            KnownSpellCM falseSpell = listOfCM.Where(x => x.Spell_id == falseSpell_id).FirstOrDefault();
+            List<KnownSpellRowCM> listOfCM = knownSpellCMs.ToList();
+            KnownSpellRowCM falseSpell = listOfCM.Where(x => x.Spell_id == falseSpell_id).FirstOrDefault();
             if(falseSpell != null)
             {
                 listOfCM.Remove(falseSpell);
@@ -125,10 +125,10 @@ namespace DnDProject.Backend.Processors.Implementations
             return listOfGuid.ToArray();
         }
 
-        public HeldItemCM[] removeNonExistantItemFromHeldItems(HeldItemCM[] heldItems, Guid falseItem_id)
+        public HeldItemRowCM[] removeNonExistantItemFromHeldItems(HeldItemRowCM[] heldItems, Guid falseItem_id)
         {
-            List<HeldItemCM> cms = heldItems.ToList();
-            HeldItemCM falseItem = cms.Where(x => x.Item_id == falseItem_id).FirstOrDefault();
+            List<HeldItemRowCM> cms = heldItems.ToList();
+            HeldItemRowCM falseItem = cms.Where(x => x.Item_id == falseItem_id).FirstOrDefault();
             if(falseItem != null)
             {
                 cms.Remove(falseItem);

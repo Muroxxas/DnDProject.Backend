@@ -28,8 +28,8 @@ namespace DnDProject.Backend.Processors.Interfaces
         bool spellCanBeCastByClass(Guid spell_id, Guid class_id);
 
 
-        KnownSpellCM[] removeNonExistantSpellCMFromKnownSpells(KnownSpellCM[] KnownSpells, Guid falseSpell_id);
+        KnownSpellRowCM[] removeNonExistantSpellCMFromKnownSpells(KnownSpellRowCM[] KnownSpells, Guid falseSpell_id);
         Guid[] removeNonExistantClassIdFromSelectedClasses(Guid[] SelectedClasses, Guid falseClass_id);
-        HeldItemCM[] removeNonExistantItemFromHeldItems(HeldItemCM[] heldItems, Guid falseItem_id);
+        HeldItemRowCM[] removeNonExistantItemFromHeldItems(HeldItemRowCM[] heldItems, Guid falseItem_id);
     }
 }

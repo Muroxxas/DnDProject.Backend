@@ -16,6 +16,14 @@ namespace DnDProject.Backend.Mapping.Implementations.Generic
         {
             mapper.Map<DataModel, ViewModel>(dataModel, viewModel);
         }
+        public ViewModel mapDataModelToViewModel(DataModel dataModel)
+        {
+            ViewModel vm = (ViewModel)Activator.CreateInstance(typeof(ViewModel));
+
+            mapper.Map<DataModel, ViewModel>(dataModel, vm);
+            return vm;
+        }
+
 
         public ReadModelMapper()
         {

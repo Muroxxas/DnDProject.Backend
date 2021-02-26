@@ -49,7 +49,7 @@ namespace DnDProject.Backend.Services.Implementations
         }
 
         //------Create components
-        public KnownClassCM GetBlankKnownClassComponent(int Index)
+        public KnownClassRowCM GetBlankKnownClassRowCM(int Index)
         {
             throw new NotImplementedException();
         }

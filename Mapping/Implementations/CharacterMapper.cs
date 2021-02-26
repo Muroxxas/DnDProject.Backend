@@ -100,6 +100,19 @@ namespace DnDProject.Backend.Mapping.Implementations
             mapper.mapDataModelToViewModel(m, cm);
 
         }
+        public static ItemDetailsCM mapItemToItemDetailsCM(Item m)
+        {
+            ReadModelMapper<Item, ItemDetailsCM> mapper = new ReadModelMapper<Item, ItemDetailsCM>();
+            ItemDetailsCM cm = new ItemDetailsCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
+
+        public static void mapItemToItemDetailsCM(Item m, ItemDetailsCM cm)
+        {
+            ReadModelMapper<Item, ItemDetailsCM> mapper = new ReadModelMapper<Item, ItemDetailsCM>();
+            mapper.mapDataModelToViewModel(m, cm);
+        }
 
         public static KnownSpellRowCM mapSpellToKnownSpellRowCM(Spell m)
         {
@@ -113,6 +126,14 @@ namespace DnDProject.Backend.Mapping.Implementations
             ReadModelMapper<Spell, KnownSpellRowCM> mapper = new ReadModelMapper<Spell, KnownSpellRowCM>();
             mapper.mapDataModelToViewModel(m, cm);
         }
+
+        public static SpellDetailsCM mapSpellToSpellDetailsCM(Spell m)
+        {
+            ReadModelMapper<Spell, SpellDetailsCM> mapper = new ReadModelMapper<Spell, SpellDetailsCM>();
+            SpellDetailsCM cm = new SpellDetailsCM();
+            mapper.mapDataModelToViewModel(m, cm);
+            return cm;
+        }
         //Update
 
         public static void mapNoteCMOverNote(NoteCM updatedRecord, Note entity)
@@ -120,6 +141,8 @@ namespace DnDProject.Backend.Mapping.Implementations
             UpdateModelMapper<NoteCM, Note> mapper = new UpdateModelMapper<NoteCM,Note>();
             mapper.mapUpdatedRecordOverEntity(updatedRecord, entity);
         }
+
+
 
     }
 }

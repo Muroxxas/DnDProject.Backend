@@ -62,7 +62,9 @@ namespace DnDProject.Backend.Processors.Implementations
 
         public CharacterVM CreateCharacterINVALID(CharacterVM vm)
         {
-
+           
+            //The reference sets won't be subimitted by the user - and even if they were, they may have been tampered with.
+            //make sure we reset the reference sets to ensure accurate information is displayed.
             SetListOfRaces(vm.PrimaryTab);
             SetListOfPlayableCLasses(vm.PrimaryTab);
             return vm;
@@ -73,17 +75,19 @@ namespace DnDProject.Backend.Processors.Implementations
         private void LearnSpells(CharacterVM vm, Guid Character_id)
         {
             List<Guid> learnedSpells = new List<Guid>();
-            foreach (KnownSpellCM knownSpell in vm.SpellsTab.KnownSpells)
+            foreach (KnownSpellRowCM knownSpell in vm.SpellsTab.KnownSpells)
             {
                 Guid spell_id = knownSpell.Spell_id;
 
                 if (_commons.spellExists(spell_id))
                 {
+                    //Check if the characer has a class selected that can cast this spell.
                     List<Guid> classesThatCanCast = _userAccess.GetIdsOfClassesThatCanCastSpell(spell_id).ToList();
                     foreach(Guid selectedClass in vm.PrimaryTab.SelectedClasses)
                     {
                         if (_commons.spellCanBeCastByClass(spell_id, selectedClass) && learnedSpells.Contains(spell_id) == false)
                         {
+                            //They do, so learn the spell
                             _userAccess.CharacterLearnsSpell(Character_id, spell_id);
                             learnedSpells.Add(spell_id);
                             break;
@@ -92,10 +96,22 @@ namespace DnDProject.Backend.Processors.Implementations
                 }
             }
         }
+        //PROBLEM - doesn't learn subclasses!
+        private void LearnClasses(CharacterVM vm, Guid Character_id)
+        {
+            List<Guid> learnedClasses = new List<Guid>();
+            foreach(Guid knownClass in vm.PrimaryTab.SelectedClasses)
+            {
+                if (_commons.playableClassExists(knownClass))
+                {
+
+                }
+            }
+        }
         private void SetInventory(CharacterVM vm, Guid Character_id)
         {
             List<Guid> obtainedItems = new List<Guid>();
-            foreach(HeldItemCM heldItem in vm.InventoryTab.Items)
+            foreach(HeldItemRowCM heldItem in vm.InventoryTab.Items)
             {
                 Guid item_id = heldItem.Item_id;
                 if(_commons.itemExists(item_id) && obtainedItems.Contains(item_id) == false)
@@ -139,7 +155,7 @@ namespace DnDProject.Backend.Processors.Implementations
         private void GetBlankInventoryTab(CharacterVM vm)
         {
             MoneyCM money = new MoneyCM();
-            HeldItemCM[] heldItems = new HeldItemCM[0];
+            HeldItemRowCM[] heldItems = new HeldItemRowCM[0];
 
             InventoryTabVM inventoryTab = new InventoryTabVM();
             inventoryTab.Items = heldItems;
@@ -149,8 +165,7 @@ namespace DnDProject.Backend.Processors.Implementations
         private void GetBlankSpellsTab(CharacterVM vm)
         {
             SpellsTabVM spellsTab = new SpellsTabVM();
-            spellsTab.SpellSlots = new SpellSlotsCM();
-            KnownSpellCM[] KnownSpells = new KnownSpellCM[0];
+            KnownSpellRowCM[] KnownSpells = new KnownSpellRowCM[0];
             spellsTab.KnownSpells = KnownSpells;
 
             vm.SpellsTab = spellsTab;

@@ -26,7 +26,7 @@ namespace DnDProject.Backend.Services.Interfaces
         CharacterSelectVM SelectCharacterGET(Guid user_id);
 
         //------Create Components-----
-        KnownClassCM GetBlankKnownClassComponent(int Index);
+        KnownClassRowCM GetBlankKnownClassRowCM(int Index);
         void CharacterObtainsItem(Guid user_id, Guid character_id, Guid spell_id);
         JsonResult GetBlankNoteComponent(int Index);
         HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);

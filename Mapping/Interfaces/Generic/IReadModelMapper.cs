@@ -9,5 +9,6 @@ namespace DnDProject.Backend.Mapping.Interfaces.Generic
     public interface IReadModelMapper<DataModel,ViewModel>
     {
         void mapDataModelToViewModel(DataModel dataModel, ViewModel viewModel);
+        ViewModel mapDataModelToViewModel(DataModel dataModel);
     }
 }

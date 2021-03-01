@@ -3,6 +3,7 @@ using DnDProject.Backend.Services.Interfaces;
 using DnDProject.Entities.Character.ViewModels;
 using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
 using DnDProject.Entities.Class.DataModels;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace DnDProject.Backend.Services.Implementations
         private ICreateCharacter _creator;
         private IUpdateCharacter _updater;
         private ICharacterCMBuilder _builder;
+        private IThingExists _existence;
+        private IItemsSearchFacade _itemSearch;
         public CharacterVM CreateCharacterGET()
         {
            return _creator.CreateCharacterGET();
@@ -74,6 +77,16 @@ namespace DnDProject.Backend.Services.Implementations
             return cm;
         }
 
+        public IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, string currentFilter, int? page)
+        {
+            return _itemSearch.searchItemsToPagedList(searchString, getItemsBy, currentFilter, page);
+        }
+
+        public ItemDetailsCM GetItemDetailsCM(Guid Item_id)
+        {
+            return _builder.buildItemDetailsCM(Item_id);
+        }
+
         //------Create records ------
         public void ExistingCharacterLearnsSpell(Guid user_id, Guid character_id, Guid spell_id)
         {
@@ -100,11 +113,19 @@ namespace DnDProject.Backend.Services.Implementations
             throw new NotImplementedException();
         }
 
-        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder )
+
+        //------Allow controller to check validity ------
+        public bool ItemExists(Guid item_id)
+        {
+            return _existence.itemExists(item_id);
+        }
+        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder, IThingExists existence, IItemsSearchFacade itemSearch)
         {
             _creator = creator;
             _updater = updater;
             _builder = builder;
+            _existence = existence;
+            _itemSearch = itemSearch;
         }
     }
 }

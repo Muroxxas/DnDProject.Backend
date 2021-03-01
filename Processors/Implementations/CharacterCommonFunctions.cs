@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Processors.Implementations
 {
-    public class CharacterCommonFunctions : ICharacterCommonFunctions
+    public class CharacterCommonFunctions : ThingExists, ICharacterCommonFunctions
     {
         private IBaseUserAccess _userAccess;
 
@@ -37,58 +37,7 @@ namespace DnDProject.Backend.Processors.Implementations
         }
 
         //------Read------
-        public bool spellExists(Guid Spell_id)
-        {
-            Spell foundSpell = _userAccess.GetSpell(Spell_id);
-            if(foundSpell!= null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool playableClassExists(Guid class_id)
-        {
-            PlayableClass foundClass = _userAccess.GetPlayableClass(class_id);
-            if(foundClass != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
 
-        }
-        public bool subclassExists(Guid subclass_id)
-        {
-            Subclass foundSubclass = _userAccess.GetSubclass(subclass_id);
-            if(foundSubclass != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
-        public bool itemExists(Guid item_id)
-        {
-            Item foundItem = _userAccess.GetItem(item_id);
-
-            if(foundItem != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public bool spellCanBeCastByClass(Guid spell_id, Guid class_id)
         {
             List<Guid> class_ids = _userAccess.GetIdsOfClassesThatCanCastSpell(spell_id).ToList();
@@ -136,7 +85,7 @@ namespace DnDProject.Backend.Processors.Implementations
             return cms.ToArray();
         }
 
-        public CharacterCommonFunctions(IBaseUserAccess userAccess)
+        public CharacterCommonFunctions(IBaseUserAccess userAccess) : base(userAccess)
         {
             _userAccess = userAccess;
         }

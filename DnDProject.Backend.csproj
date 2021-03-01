@@ -58,6 +58,12 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\DnD-Project\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\DnD-Project\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\DnD-Project\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="SendGrid, Version=9.22.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\DnD-Project\packages\SendGrid.9.22.0\lib\net452\SendGrid.dll</HintPath>
     </Reference>
@@ -123,12 +129,21 @@
     <Compile Include="Mapping\Interfaces\Generic\ICreateModelMapper.cs" />
     <Compile Include="Processors\Implementations\CharacterCMBuilder.cs" />
     <Compile Include="Processors\Implementations\CharacterCommonFunctions.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\Filters\DescriptionContains.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\Filters\Filter.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\Filters\NameContains.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\Generic\ItemSearchGeneric.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\ItemSearchFacade.cs" />
+    <Compile Include="Processors\Implementations\ItemsSearch\ItemSearchToDecorate.cs" />
     <Compile Include="Processors\Implementations\Sendgrid\BasicEmailFactory.cs" />
     <Compile Include="Processors\Implementations\Sendgrid\EmailFormatMetaFactory.cs" />
     <Compile Include="Processors\Implementations\Sendgrid\Formats\BasicRegistrationEmail.cs" />
+    <Compile Include="Processors\Implementations\ThingExists.cs" />
     <Compile Include="Processors\Implementations\UpdateCharacter.cs" />
     <Compile Include="Processors\Interfaces\ICharacterCMBuilder.cs" />
     <Compile Include="Processors\Interfaces\ICharacterCommonFunctions.cs" />
+    <Compile Include="Processors\Interfaces\IItemsSearchFacade.cs" />
+    <Compile Include="Processors\Interfaces\IThingExists.cs" />
     <Compile Include="Processors\Interfaces\SendGrid\IEmailFactory.cs" />
     <Compile Include="Processors\Interfaces\SendGrid\IRegistrationEmailFormat.cs" />
     <Compile Include="Services\Implementations\CharacterServices.cs" />
@@ -186,7 +201,9 @@
     <Compile Include="UserAccess\Interfaces\IRaceManagerUserAccess.cs" />
     <Compile Include="UserAccess\Interfaces\ISpellManagerUserAccess.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

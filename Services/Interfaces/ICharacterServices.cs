@@ -1,6 +1,7 @@
 ﻿using DnDProject.Backend.Services.Implementations;
 using DnDProject.Entities.Character.ViewModels;
 using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,9 @@ namespace DnDProject.Backend.Services.Interfaces
         HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);
         KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id);
 
+        IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, string currentFilter, int? page);
+        ItemDetailsCM GetItemDetailsCM(Guid Item_id);
+
         //------Create Records ------
         void ExistingCharacterLearnsSpell(Guid user_id, Guid Character_id, Guid Spell_id);
 
@@ -42,7 +46,8 @@ namespace DnDProject.Backend.Services.Interfaces
         void CharacterForgetsSpell(Guid user_id, Guid character_id, Guid spell_id);
 
 
-
+        //------Check validity------
+        bool ItemExists(Guid Item_id);
 
 
 

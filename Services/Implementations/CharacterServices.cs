@@ -56,9 +56,9 @@ namespace DnDProject.Backend.Services.Implementations
         {
             throw new NotImplementedException();
         }
-        public void CharacterObtainsItem(Guid user_id, Guid character_id, Guid spell_id)
+        public HeldItemRowCM CharacterObtainsItem(Guid user_id, Guid character_id, Guid Item_id)
         {
-            throw new NotImplementedException();
+            return _builder.buildNewHeldItemRowCM(Item_id);
         }
         public JsonResult GetBlankNoteComponent(int Index)
         {
@@ -77,9 +77,9 @@ namespace DnDProject.Backend.Services.Implementations
             return cm;
         }
 
-        public IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, string currentFilter, int? page)
+        public IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, int? page)
         {
-            return _itemSearch.searchItemsToPagedList(searchString, getItemsBy, currentFilter, page);
+            return _itemSearch.searchItemsToPagedList(searchString, getItemsBy, page);
         }
 
         public ItemDetailsCM GetItemDetailsCM(Guid Item_id)
@@ -115,6 +115,11 @@ namespace DnDProject.Backend.Services.Implementations
 
 
         //------Allow controller to check validity ------
+
+        public bool CharacterExists(Guid Character_id)
+        {
+            return _existence.characterExists(Character_id);
+        }
         public bool ItemExists(Guid item_id)
         {
             return _existence.itemExists(item_id);

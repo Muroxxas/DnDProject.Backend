@@ -11,7 +11,7 @@ namespace DnDProject.Backend.Processors.Interfaces
 {
     public interface IItemsSearchFacade
     {
-        IEnumerable<Item> searchItems(string searchString, string getItemsBy, string currentFilter);
-        IPagedList<foundItemCM> searchItemsToPagedList(string searchString, string getItemsBy, string currentFilter, int? page);
+        IEnumerable<Item> searchItems(string searchString, string getItemsBy);
+        IPagedList<foundItemCM> searchItemsToPagedList(string searchString, string getItemsBy, int? page);
     }
 }

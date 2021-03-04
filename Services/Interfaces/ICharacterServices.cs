@@ -28,12 +28,12 @@ namespace DnDProject.Backend.Services.Interfaces
 
         //------Create Components-----
         KnownClassRowCM GetBlankKnownClassRowCM(int Index);
-        void CharacterObtainsItem(Guid user_id, Guid character_id, Guid spell_id);
+        HeldItemRowCM CharacterObtainsItem(Guid user_id, Guid character_id, Guid item_id);
         JsonResult GetBlankNoteComponent(int Index);
         HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);
         KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id);
 
-        IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, string currentFilter, int? page);
+        IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, int? page);
         ItemDetailsCM GetItemDetailsCM(Guid Item_id);
 
         //------Create Records ------
@@ -47,6 +47,7 @@ namespace DnDProject.Backend.Services.Interfaces
 
 
         //------Check validity------
+        bool CharacterExists(Guid Character_id);
         bool ItemExists(Guid Item_id);
 
 

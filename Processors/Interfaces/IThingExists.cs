@@ -8,6 +8,7 @@ namespace DnDProject.Backend.Processors.Interfaces
 {
     public interface IThingExists
     {
+        bool characterExists(Guid Character_id);
         bool spellExists(Guid Spell_id);
         bool playableClassExists(Guid class_id);
         bool subclassExists(Guid subclass_id);

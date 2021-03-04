@@ -1,5 +1,6 @@
 ﻿using DnDProject.Backend.Processors.Interfaces;
 using DnDProject.Backend.UserAccess.Interfaces;
+using DnDProject.Entities.Character.DataModels;
 using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
 using DnDProject.Entities.Spells.DataModels;
@@ -15,6 +16,18 @@ namespace DnDProject.Backend.Processors.Implementations
     {
         private IBaseUserAccess _userAccess;
 
+        public bool characterExists(Guid Character_id)
+        {
+            CharacterDM foundCharacter = _userAccess.GetCharacter(Character_id);
+            if(foundCharacter != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool spellExists(Guid Spell_id)
         {
             Spell foundSpell = _userAccess.GetSpell(Spell_id);

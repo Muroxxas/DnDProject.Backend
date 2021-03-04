@@ -17,28 +17,18 @@ namespace DnDProject.Backend.Processors.Implementations.ItemsSearch
     {
         ItemsContext _context;
 
-        public IEnumerable<Item> searchItems(string searchString, string getItemsBy, string currentFacade)
+        public IEnumerable<Item> searchItems(string searchString, string getItemsBy)
         {
-            return Search(searchString, getItemsBy, currentFacade).ToList();
+            return Search(searchString, getItemsBy).ToList();
         }
 
-        public IPagedList<foundItemCM> searchItemsToPagedList(string searchString, string getItemsBy, string currentFilter, int? page)
+        public IPagedList<foundItemCM> searchItemsToPagedList(string searchString, string getItemsBy, int? page)
         {            
-
-            if(searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
 
             int pageNumber = (page ?? 1);
             int pageSize = 20;
 
-            IQueryable<Item> query = Search(searchString, getItemsBy, currentFilter);
+            IQueryable<Item> query = Search(searchString, getItemsBy);
             IPagedList<Item> pagedQuery = query.ToPagedList(pageNumber, pageSize);
             List<foundItemCM> CMList = new List<foundItemCM>();
 
@@ -54,7 +44,7 @@ namespace DnDProject.Backend.Processors.Implementations.ItemsSearch
         }
 
         //Uses a decorator pattern to construct and return a filtered IQueryable.
-        private IQueryable<Item> Search(string searchString, string getItemsBy, string currentFilter)
+        private IQueryable<Item> Search(string searchString, string getItemsBy)
         {
 
             ItemSearchToDecorate toDecorate = new ItemSearchToDecorate(_context);

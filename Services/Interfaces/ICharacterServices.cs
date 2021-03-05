@@ -33,7 +33,7 @@ namespace DnDProject.Backend.Services.Interfaces
         HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);
         KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id);
 
-        IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, int? page);
+        ItemSearchResultCM SearchItems(string searchString, string getItemsBy, int? page);
         ItemDetailsCM GetItemDetailsCM(Guid Item_id);
 
         //------Create Records ------

@@ -77,9 +77,22 @@ namespace DnDProject.Backend.Services.Implementations
             return cm;
         }
 
-        public IPagedList<foundItemCM> SearchItems(string searchString, string getItemsBy, int? page)
+        public ItemSearchResultCM SearchItems(string searchString, string getItemsBy, int? page)
         {
-            return _itemSearch.searchItemsToPagedList(searchString, getItemsBy, page);
+            ItemSearchResultCM cm = new ItemSearchResultCM();
+            cm.foundItems = _itemSearch.searchItemsToPagedList(searchString, getItemsBy, page);
+            cm.currentFilter = searchString;
+            cm.currentGetItemsBy = getItemsBy;
+            if(page != null)
+            {
+                cm.currentPage = (int)page;
+            }
+            else
+            {
+                cm.currentPage = 1;
+            }
+
+            return cm;
         }
 
         public ItemDetailsCM GetItemDetailsCM(Guid Item_id)

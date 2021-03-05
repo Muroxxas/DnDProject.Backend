@@ -137,6 +137,12 @@ namespace DnDProject.Backend.Services.Implementations
         {
             return _existence.itemExists(item_id);
         }
+        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder)
+        {
+            _creator = creator;
+            _updater = updater;
+            _builder = builder;
+        }
         public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder, IThingExists existence, IItemsSearchFacade itemSearch)
         {
             _creator = creator;

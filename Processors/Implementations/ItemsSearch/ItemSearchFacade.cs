@@ -29,6 +29,9 @@ namespace DnDProject.Backend.Processors.Implementations.ItemsSearch
             int pageSize = 20;
 
             IQueryable<Item> query = Search(searchString, getItemsBy);
+
+            //Paginate the query, then get the set of items specified by the paginated query.
+            //Increases efficiency, as I now only get the items I need for the page.
             IPagedList<Item> pagedQuery = query.ToPagedList(pageNumber, pageSize);
             List<foundItemCM> CMList = new List<foundItemCM>();
 

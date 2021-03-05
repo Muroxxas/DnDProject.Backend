@@ -138,11 +138,18 @@
     <Compile Include="Processors\Implementations\Sendgrid\BasicEmailFactory.cs" />
     <Compile Include="Processors\Implementations\Sendgrid\EmailFormatMetaFactory.cs" />
     <Compile Include="Processors\Implementations\Sendgrid\Formats\BasicRegistrationEmail.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\Filters\DescriptionContains.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\Filters\Filter.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\Filters\NameContains.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\Generic\SpellsSearchGeneric.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\SpellSearchFacade.cs" />
+    <Compile Include="Processors\Implementations\SpellsSearch\SpellSearchToDecorate.cs" />
     <Compile Include="Processors\Implementations\ThingExists.cs" />
     <Compile Include="Processors\Implementations\UpdateCharacter.cs" />
     <Compile Include="Processors\Interfaces\ICharacterCMBuilder.cs" />
     <Compile Include="Processors\Interfaces\ICharacterCommonFunctions.cs" />
     <Compile Include="Processors\Interfaces\IItemsSearchFacade.cs" />
+    <Compile Include="Processors\Interfaces\ISpellSearchFacade.cs" />
     <Compile Include="Processors\Interfaces\IThingExists.cs" />
     <Compile Include="Processors\Interfaces\SendGrid\IEmailFactory.cs" />
     <Compile Include="Processors\Interfaces\SendGrid\IRegistrationEmailFormat.cs" />
@@ -214,6 +221,7 @@
       <Name>DnDProject.Entities</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

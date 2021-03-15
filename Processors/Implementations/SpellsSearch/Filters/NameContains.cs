@@ -15,7 +15,7 @@ namespace DnDProject.Backend.Processors.Implementations.SpellsSearch.Filters
         public override IQueryable<Spell> GetSpells()
         {
             IQueryable<Spell> query = _toBeDecorated.GetSpells();
-            IQueryable<Spell> decoratedQuery = query.Where(x => x.Name.Contains(_contents));
+            IQueryable<Spell> decoratedQuery = query.Where(x => x.Name.ToLower().Contains(_contents));
             return decoratedQuery;
         }
         public NameContains(string contents)

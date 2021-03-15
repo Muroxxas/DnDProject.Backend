@@ -72,41 +72,9 @@ namespace DnDProject.Backend.Processors.Implementations
 
 
 
-        private void LearnSpells(CharacterVM vm, Guid Character_id)
+        private void LearnSpells(CharacterVM vm, Guid character_id)
         {
-            List<Guid> learnedSpells = new List<Guid>();
-            foreach (KnownSpellRowCM knownSpell in vm.SpellsTab.KnownSpells)
-            {
-                Guid spell_id = knownSpell.Spell_id;
-
-                if (_commons.spellExists(spell_id))
-                {
-                    //Check if the characer has a class selected that can cast this spell.
-                    List<Guid> classesThatCanCast = _userAccess.GetIdsOfClassesThatCanCastSpell(spell_id).ToList();
-                    foreach(Guid selectedClass in vm.PrimaryTab.SelectedClasses)
-                    {
-                        if (_commons.spellCanBeCastByClass(spell_id, selectedClass) && learnedSpells.Contains(spell_id) == false)
-                        {
-                            //They do, so learn the spell
-                            _userAccess.CharacterLearnsSpell(Character_id, spell_id);
-                            learnedSpells.Add(spell_id);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        //PROBLEM - doesn't learn subclasses!
-        private void LearnClasses(CharacterVM vm, Guid Character_id)
-        {
-            List<Guid> learnedClasses = new List<Guid>();
-            foreach(Guid knownClass in vm.PrimaryTab.SelectedClasses)
-            {
-                if (_commons.playableClassExists(knownClass))
-                {
-
-                }
-            }
+            throw new NotImplementedException();
         }
         private void SetInventory(CharacterVM vm, Guid Character_id)
         {
@@ -138,7 +106,7 @@ namespace DnDProject.Backend.Processors.Implementations
             SetListOfRaces(primaryTab);
             SetListOfPlayableCLasses(primaryTab);
             primaryTab.Stats = new StatsCM();
-            primaryTab.IsProficient = new IsProficientCM();
+            throw new NotImplementedException();
             primaryTab.Combat = new CombatCM();
 
             vm.PrimaryTab = primaryTab;
@@ -192,22 +160,7 @@ namespace DnDProject.Backend.Processors.Implementations
         }
         private void SetListOfPlayableCLasses(PrimaryTabVM primaryTab) 
         {
-            List<ClassesListModel> playableClasses = new List<ClassesListModel>();
-
-            List<PlayableClass> pc = _userAccess.GetAllPlayableClasses().ToList();
-
-            foreach(PlayableClass playableClass in pc)
-            {
-                ClassesListModel lm = new ClassesListModel
-                {
-                    Name = playableClass.Name,
-                    Class_id = playableClass.Class_id
-                };
-                playableClasses.Add(lm);
-            }
-            primaryTab.Classes = playableClasses;
-
-             
+            throw new NotImplementedException();             
         }
 
         public CreateCharacter(IBaseUserAccess userAccess, ICharacterCommonFunctions commons)

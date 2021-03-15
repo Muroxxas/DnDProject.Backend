@@ -26,7 +26,7 @@ namespace DnDProject.Backend.UserAccess.Interfaces
 
 
         void AddStatsRecord(Stats stats);
-        Stats GetStatsRecord(Guid CHaracter_id);
+        Stats GetStatsRecord(Guid Character_id);
 
         void AddCurrencyRecord(Currency currency);
         Currency GetCurrencyRecord(Guid Character_id);

@@ -15,7 +15,7 @@ namespace DnDProject.Backend.Processors.Implementations.ItemsSearch.Filters
         public override IQueryable<Item> GetItems()
         {
             IQueryable<Item> query = _toBeDecorated.GetItems();
-            IQueryable<Item> decoratedQuery = query.Where(x => x.Name.Contains(_whatIsContained));
+            IQueryable<Item> decoratedQuery = query.Where(x => x.Name.ToLower().Contains(_whatIsContained));
             return decoratedQuery;
         }
 

@@ -127,7 +127,7 @@ namespace DnDProject.Backend.Processors.Implementations
 
 
         //Subclasses are not set in here, as that is planned to be handled dynamically by javascript getting only subclasses for the class.
-        public KnownClassRowCM buildNewKnownClassRowCM()
+        public ClassRowCM buildNewClassRowCM(int Index)
         {
             ReadModelMapper<PlayableClass, ClassesListModel> mapper = new ReadModelMapper<PlayableClass, ClassesListModel>();
             List<PlayableClass> foundClasses = _userAccess.GetAllPlayableClasses().ToList();
@@ -138,54 +138,160 @@ namespace DnDProject.Backend.Processors.Implementations
                 clm.Add(lm);
             }
 
-            KnownClassRowCM cm = new KnownClassRowCM
+            ClassRowCM cm = new ClassRowCM
             {
+                Index=Index,
                 Level = 1,
-                HitDice = 1,
-                Classes = clm
+                RemainingHitDice = 1,
+                playableClasses = clm.ToArray()
             };
             return cm;
         }
-        public KnownClassRowCM buildExistingKnownClassRowCM(Guid Character_id, Guid Class_id)
+        public ClassRowCM buildKnownClassRowCM(int Index, Character_Class_Subclass ccsc, ClassesListModel[] CLM)
         {
-            //Get all playable classes for reference list
-            ReadModelMapper<PlayableClass, ClassesListModel> classMapper = new ReadModelMapper<PlayableClass, ClassesListModel>();
-            List<PlayableClass> foundClasses = _userAccess.GetAllPlayableClasses().ToList();
-            List<ClassesListModel> clm = new List<ClassesListModel>();
-            foreach (PlayableClass x in foundClasses)
-            {
-                ClassesListModel lm = classMapper.mapDataModelToViewModel(x);
-                clm.Add(lm);
-            }
 
-            //Get all subclasses of Class for reference list.
+            // Takes the set of list models as an argument, as 
+            //being passed references to the same set is more efficient than searching and obtaining the set again and again.
+            //Still have to search for each class' subclasses, as that changes depending on the class.
             ReadModelMapper<Subclass, SubclassesListModel> subclassMapper = new ReadModelMapper<Subclass, SubclassesListModel>();
-            List<Subclass> foundSubclasses = _userAccess.GetAllSubclassesForClass(Class_id).ToList();
+            List<Subclass> foundSubclasses = _userAccess.GetAllSubclassesForClass(ccsc.Class_id).ToList();
             List<SubclassesListModel> sclm = new List<SubclassesListModel>();
-            foreach(Subclass x in foundSubclasses)
+            foreach (Subclass x in foundSubclasses)
             {
                 SubclassesListModel lm = subclassMapper.mapDataModelToViewModel(x);
                 sclm.Add(lm);
             }
 
-            //Get info from the associatative record.
-            Character_Class_Subclass foundCCSC = _userAccess.GetKnownClassRecordOfCharaterAndClass(Character_id, Class_id);
-
-
-            KnownClassRowCM cm = new KnownClassRowCM
+            ClassRowCM cm = new ClassRowCM
             {
-                Class_id = Class_id,
-                Classes = clm,
+                Index = Index,
+                playableClasses = CLM,
+                SelectedClass_id = ccsc.Class_id,
 
-                Subclass_id = foundCCSC.Subclass_id,
-                Subclasses = sclm,
+                Level = ccsc.ClassLevel,
+                RemainingHitDice = ccsc.RemainingHitDice,
 
-                HitDice = foundCCSC.RemainingHitDice,
-                Level = foundCCSC.ClassLevel
+                subclasses = sclm.ToArray(),
+                SelectedSubclass_id = ccsc.Subclass_id
             };
-
             return cm;
 
+        }
+
+
+        public StatsCM buildStatsCM(Guid Character_id)
+        {
+            ReadModelMapper<Stats, StatsCM> mapper = new ReadModelMapper<Stats, StatsCM>();
+            Stats foundStats = _userAccess.GetStatsRecord(Character_id);
+            StatsCM cm = mapper.mapDataModelToViewModel(foundStats);
+            return cm;
+        }
+
+        public StatBonusCM buildStatBonusCM(StatsCM cm)
+        {
+            StatBonusCM bonusCM = new StatBonusCM();
+
+            bonusCM.Strength = calcStatBonus(cm.Strength);
+            bonusCM.Dexterity = calcStatBonus(cm.Dexterity);
+            bonusCM.Constitution = calcStatBonus(cm.Constitution);
+
+            bonusCM.Intelligence = calcStatBonus(cm.Intelligence);
+            bonusCM.Wisdom = calcStatBonus(cm.Wisdom);
+            bonusCM.Charisma = calcStatBonus(cm.Charisma);
+
+            return bonusCM;
+        }
+
+        public ProficiencyCM buildProficiencyCM(Guid Character_id, StatBonusCM statBonus, int totalLevel)
+        {
+            ProficiencyCM cm = new ProficiencyCM();
+            cm.ProficiencyBonus = totalLevel / 4;
+
+            IsProficientCM isProficient = buildIsProficientCM(Character_id);
+            cm.isProficient = isProficient;
+
+            SkillBonusCM skillBonus = buildSkillBonusCM(statBonus, totalLevel, isProficient);
+            cm.TotalBonus = skillBonus;
+
+            return cm;
+        }
+        public IsProficientCM buildIsProficientCM(Guid Character_id)
+        {
+            IsProficient foundRecord = _userAccess.GetProficiencyRecord(Character_id);
+            ReadModelMapper<IsProficient, IsProficientCM> mapper = new ReadModelMapper<IsProficient, IsProficientCM>();
+            IsProficientCM cm = mapper.mapDataModelToViewModel(foundRecord);
+            return cm;
+        }
+
+        public SkillBonusCM buildSkillBonusCM(StatBonusCM statBonus, int totalLevel, IsProficientCM proficiencies)
+        {
+            SkillBonusCM skillBonus = new SkillBonusCM();
+            int proficienyBonus = totalLevel / 4;
+
+            //str
+            skillBonus.Athletics = calcSkillBonus(statBonus.Strength, proficienyBonus, proficiencies.Athletics);
+
+            //dex
+            skillBonus.Acrobatics = calcSkillBonus(statBonus.Dexterity, proficienyBonus, proficiencies.Acrobatics);
+            skillBonus.Stealth = calcSkillBonus(statBonus.Dexterity, proficienyBonus, proficiencies.Stealth);
+            skillBonus.SleightOfHand = calcSkillBonus(statBonus.Dexterity, proficienyBonus, proficiencies.SleightOfHand);
+
+            //con
+            // no skills for constitution
+
+            //int
+            skillBonus.Arcana = calcSkillBonus(statBonus.Intelligence, proficienyBonus, proficiencies.Arcana);
+            skillBonus.History = calcSkillBonus(statBonus.Intelligence, proficienyBonus, proficiencies.History);
+            skillBonus.Investigation = calcSkillBonus(statBonus.Intelligence, proficienyBonus, proficiencies.Investigation);
+            skillBonus.Nature = calcSkillBonus(statBonus.Intelligence, proficienyBonus, proficiencies.Nature);
+            skillBonus.Religion = calcSkillBonus(statBonus.Intelligence, proficienyBonus, proficiencies.Religion);
+
+            //wis
+            skillBonus.AnimalHandling = calcSkillBonus(statBonus.Wisdom, proficienyBonus, proficiencies.AnimalHandling);
+            skillBonus.Insight = calcSkillBonus(statBonus.Wisdom, proficienyBonus, proficiencies.Insight);
+            skillBonus.Medicine = calcSkillBonus(statBonus.Wisdom, proficienyBonus, proficiencies.Medicine);
+            skillBonus.Perception = calcSkillBonus(statBonus.Wisdom, proficienyBonus, proficiencies.Perception);
+            skillBonus.Survival = calcSkillBonus(statBonus.Wisdom, proficienyBonus, proficiencies.Survival);
+
+            //cha
+            skillBonus.Deception = calcSkillBonus(statBonus.Charisma, proficienyBonus, proficiencies.Deception);
+            skillBonus.Intimidation = calcSkillBonus(statBonus.Charisma, proficienyBonus, proficiencies.Intimidation);
+            skillBonus.Performance = calcSkillBonus(statBonus.Charisma, proficienyBonus, proficiencies.Performance);
+            skillBonus.Persuasion = calcSkillBonus(statBonus.Charisma, proficienyBonus, proficiencies.Persuasion);
+
+            return skillBonus;
+        }
+
+
+        private int calcStatBonus (int stat)
+        {
+            if(stat == 10)
+            {
+                return 0;
+            }
+            else if (stat > 10)
+            {
+                double calculating = (double)(stat - 10) / 2;
+                double result = Math.Floor(calculating);
+                return (int)result;
+            }
+            else
+            {
+                double calculating = (double)(10 - stat) / 2;
+                double result = 0 - Math.Ceiling(calculating);
+                return (int)result;
+            }
+        }
+        private int calcSkillBonus(int statBonus, int proficiencyBonus, bool isProficient)
+        {
+            if (isProficient)
+            {
+                return statBonus + proficiencyBonus;
+            }
+            else
+            {
+                return statBonus;
+            }
         }
 
         public CharacterCMBuilder(IBaseUserAccess userAccess)

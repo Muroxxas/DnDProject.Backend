@@ -20,6 +20,7 @@ namespace DnDProject.Backend.Services.Implementations
         private ICharacterCMBuilder _builder;
         private IThingExists _existence;
         private IItemsSearchFacade _itemSearch;
+        private ISpellSearchFacade _spellSearch;
         public CharacterVM CreateCharacterGET()
         {
            return _creator.CreateCharacterGET();
@@ -52,7 +53,7 @@ namespace DnDProject.Backend.Services.Implementations
         }
 
         //------Create components
-        public KnownClassRowCM GetBlankKnownClassRowCM(int Index)
+        public ClassRowCM GetBlankKnownClassRowCM(int Index)
         {
             throw new NotImplementedException();
         }
@@ -100,6 +101,28 @@ namespace DnDProject.Backend.Services.Implementations
             return _builder.buildItemDetailsCM(Item_id);
         }
 
+        public SpellSearchResultCM SearchSpells(string searchString, string getSpellsBy, int? page)
+        {
+            SpellSearchResultCM cm = new SpellSearchResultCM();
+            cm.foundSpells = _spellSearch.searchSpellsToPagedList(searchString, getSpellsBy, page);
+            cm.currentFilter = searchString;
+            cm.currentGetSpellsBy = getSpellsBy;
+
+            if (page != null)
+            {
+                cm.currentPage = (int)page;
+            }
+            else
+            {
+                cm.currentPage = 1;
+            }
+
+            return cm;
+        }
+        public SpellDetailsCM GetSpellDetailsCM(Guid Spell_id)
+        {
+            return _builder.buildSpellDetailsCM(Spell_id);
+        }
         //------Create records ------
         public void ExistingCharacterLearnsSpell(Guid user_id, Guid character_id, Guid spell_id)
         {
@@ -137,19 +160,25 @@ namespace DnDProject.Backend.Services.Implementations
         {
             return _existence.itemExists(item_id);
         }
+        public bool SpellExists(Guid Spell_id)
+        {
+            return _existence.spellExists(Spell_id);
+        }
+
         public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder)
         {
             _creator = creator;
             _updater = updater;
             _builder = builder;
         }
-        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder, IThingExists existence, IItemsSearchFacade itemSearch)
+        public CharacterServices(ICreateCharacter creator, IUpdateCharacter updater, ICharacterCMBuilder builder, IThingExists existence, IItemsSearchFacade itemSearch, ISpellSearchFacade spellSearch)
         {
             _creator = creator;
             _updater = updater;
             _builder = builder;
             _existence = existence;
             _itemSearch = itemSearch;
+            _spellSearch = spellSearch;
         }
     }
 }

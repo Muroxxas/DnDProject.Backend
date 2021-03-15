@@ -27,14 +27,19 @@ namespace DnDProject.Backend.Services.Interfaces
         CharacterSelectVM SelectCharacterGET(Guid user_id);
 
         //------Create Components-----
-        KnownClassRowCM GetBlankKnownClassRowCM(int Index);
+        ClassRowCM GetBlankKnownClassRowCM(int Index);
         HeldItemRowCM CharacterObtainsItem(Guid user_id, Guid character_id, Guid item_id);
         JsonResult GetBlankNoteComponent(int Index);
         HeldItemRowCM buildHeldItemRowCM(int Index, Guid Item_id);
         KnownSpellRowCM buildKnownSpellRowCM(int Index, Guid Spell_id);
 
+        //--ItemSearch
         ItemSearchResultCM SearchItems(string searchString, string getItemsBy, int? page);
         ItemDetailsCM GetItemDetailsCM(Guid Item_id);
+
+        //--Spell Search
+        SpellSearchResultCM SearchSpells(string searchString, string getSpellsBy, int? page);
+        SpellDetailsCM GetSpellDetailsCM(Guid Spell_id);
 
         //------Create Records ------
         void ExistingCharacterLearnsSpell(Guid user_id, Guid Character_id, Guid Spell_id);
@@ -49,6 +54,7 @@ namespace DnDProject.Backend.Services.Interfaces
         //------Check validity------
         bool CharacterExists(Guid Character_id);
         bool ItemExists(Guid Item_id);
+        bool SpellExists(Guid Spell_id);
 
 
 

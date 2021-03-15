@@ -47,6 +47,7 @@ namespace DnDProject.Backend.Processors.Implementations.SpellsSearch
 
         private IQueryable<Spell> Search(string searchString, string getSpellsBy)
         {
+            searchString = searchString.ToLower();
             SpellSearchToDecorate toDecorate = new SpellSearchToDecorate(_context);
 
             Filter decorated = null;
@@ -66,7 +67,7 @@ namespace DnDProject.Backend.Processors.Implementations.SpellsSearch
                 default:
                     var defaulted = new NameContains(searchString);
                     defaulted.setToBeDecorated(toDecorate);
-                    decorated = default;
+                    decorated = defaulted;
                     break;                
             }
 

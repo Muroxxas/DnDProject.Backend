@@ -49,7 +49,7 @@ namespace DnDProject.Backend.Processors.Implementations.ItemsSearch
         //Uses a decorator pattern to construct and return a filtered IQueryable.
         private IQueryable<Item> Search(string searchString, string getItemsBy)
         {
-
+            searchString = searchString.ToLower();
             ItemSearchToDecorate toDecorate = new ItemSearchToDecorate(_context);
 
             Filter decorated = null;

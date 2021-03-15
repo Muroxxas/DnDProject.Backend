@@ -1,4 +1,5 @@
 ﻿using DnDProject.Entities.Character.ViewModels.PartialViewModels.Components;
+using DnDProject.Entities.Class.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,24 @@ namespace DnDProject.Backend.Processors.Interfaces
         //Builds and returns a set of NoteCMs. This represents all the notes a character has within the database at the time of calling.
         IEnumerable<NoteCM> buildNoteCMsFOrCharacter(Guid Character_id);
 
-        KnownClassRowCM buildNewKnownClassRowCM();
+        ClassRowCM buildNewClassRowCM(int Index);
 
-        KnownClassRowCM buildExistingKnownClassRowCM(Guid Character_id, Guid Class_id);
+        ClassRowCM buildKnownClassRowCM(int Index, Character_Class_Subclass ccsc, ClassesListModel[] CLM);
+
+        //KnownClassRowCM buildExistingKnownClassRowCM(Guid Character_id, Guid Class_id);
+
+
+        StatsCM buildStatsCM(Guid Character_id);
+
+        StatBonusCM buildStatBonusCM(StatsCM cm);
+
+        ProficiencyCM buildProficiencyCM(Guid Character_id, StatBonusCM statBonus, int totalLevel);
+
+        IsProficientCM buildIsProficientCM(Guid Character_id);
+
+        SkillBonusCM buildSkillBonusCM(StatBonusCM statBonus, int totalLevel, IsProficientCM proficiencies);
+
+        //SavesCM buildSavesCM(Guid Character_id, StatBonusCM statBonus, int totalLevel);
 
 
     }

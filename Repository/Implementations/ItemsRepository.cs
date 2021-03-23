@@ -26,6 +26,10 @@ namespace DnDProject.Backend.Repository.Implementations
             };
             itemsContext.HeldItems.Add(newHeldItem);
         }
+        public void CharacterObtainsItem(Character_Item record)
+        {
+            itemsContext.HeldItems.Add(record);
+        }
         public Character_Item GetHeldItemRecord(Guid Character_id, Guid Item_id)
         {
             return itemsContext.HeldItems.Where(x => x.Character_id == Character_id && x.Item_id == Item_id).FirstOrDefault();

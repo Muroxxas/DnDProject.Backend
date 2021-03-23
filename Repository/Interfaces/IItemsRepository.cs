@@ -11,6 +11,7 @@ namespace DnDProject.Backend.Repository.Interfaces
     public interface IItemsRepository : IRepository<Item>
     {
         void CharacterObtainsItem(Guid Character_id, Guid Item_id);
+        void CharacterObtainsItem(Character_Item record);
         void CharacterLosesItem(Guid Character_id, Guid Item_id);
         IEnumerable<Item> GetItemsHeldBy(Guid Character_id);
 

@@ -3,6 +3,7 @@ using DnDProject.Backend.UserAccess.Interfaces;
 using DnDProject.Entities.Character.DataModels;
 using DnDProject.Entities.Class.DataModels;
 using DnDProject.Entities.Items.DataModels;
+using DnDProject.Entities.Races.DataModels;
 using DnDProject.Entities.Spells.DataModels;
 using System;
 using System.Collections.Generic;
@@ -66,6 +67,18 @@ namespace DnDProject.Backend.Processors.Implementations
             }
 
         }
+        public bool subclassIsOfClass(Guid subclass_id, Guid Class_id)
+        {
+            Subclass foundSubclass = _userAccess.GetSubclass(subclass_id);
+            if(foundSubclass.Class_id == Class_id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool itemExists(Guid item_id)
         {
@@ -81,6 +94,18 @@ namespace DnDProject.Backend.Processors.Implementations
             }
         }
 
+        public bool raceExists (Guid race_id)
+        {
+            Race foundRace = _userAccess.GetRace(race_id);
+            if (foundRace != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public ThingExists(IBaseUserAccess userAccess)
         {
             _userAccess = userAccess;

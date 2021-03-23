@@ -87,6 +87,10 @@ namespace DnDProject.Backend.Repository.Implementations
             spellsContext.KnownSpells.Add(learnedSpell);
         }
 
+        public void CharacterLearnsSpell(Spell_Character record)
+        {
+            spellsContext.KnownSpells.Add(record);
+        }
         public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
         {
             Spell_Character foundRecord = (from S_C in spellsContext.KnownSpells

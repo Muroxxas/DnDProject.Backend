@@ -25,6 +25,8 @@ namespace DnDProject.Backend.Repository.Interfaces
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
 
+        void CharacterLearnsSpell(Spell_Character record);
+
         void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);
 
         void AddSpellMaterials(Material material);

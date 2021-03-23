@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Processors.Implementations
 {
-    public class CharacterCommonFunctions : ThingExists, ICharacterCommonFunctions
+    public class CharacterCommonFunctions : ThingExists, ICharacterCommonFunctions, IThingExists
     {
         private IBaseUserAccess _userAccess;
 

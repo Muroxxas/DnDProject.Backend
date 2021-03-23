@@ -47,6 +47,7 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         IEnumerable<Guid> GetIdsOfClassesThatCanCastSpell(Guid Spell_id);
 
         void CharacterLearnsSpell(Guid Character_id, Guid Spell_id);
+        void CharacterLearnsSpell(Spell_Character record);
         void CharacterForgetsSpell(Guid Character_id, Guid Spell_id);
 
 
@@ -58,6 +59,7 @@ namespace DnDProject.Backend.UserAccess.Interfaces
         IEnumerable<Tag> GetTagsForItem(Guid Item_id);
 
         void CharacterObtainsItem(Guid Character_id, Guid Item_id);
+        void CharacterObtainsItem(Character_Item record);
         void CharacterLosesItem(Guid Character_id, Guid Item_id);
 
 

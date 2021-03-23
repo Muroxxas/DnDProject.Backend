@@ -149,6 +149,11 @@ namespace DnDProject.Backend.UserAccess.Implementations
             _worker.Spells.CharacterLearnsSpell(Character_id, Spell_id);
         }
 
+        public void CharacterLearnsSpell(Spell_Character record)
+        {
+            _worker.Spells.CharacterLearnsSpell(record);
+        }
+
         public void CharacterForgetsSpell(Guid Character_id, Guid Spell_id)
         {
             _worker.Spells.CharacterForgetsSpell(Character_id, Spell_id);
@@ -159,11 +164,17 @@ namespace DnDProject.Backend.UserAccess.Implementations
             _worker.Items.CharacterObtainsItem(Character_id, Item_id);
         }
 
+        public void CharacterObtainsItem(Character_Item record)
+        {
+            _worker.Items.CharacterObtainsItem(record);
+        }
+
         public void CharacterLosesItem(Guid Character_id, Guid Item_id)
         {
             _worker.Items.CharacterLosesItem(Character_id, Item_id);
         }
 
+        
         public Item GetItem(Guid Item_id)
         {
             return _worker.Items.Get(Item_id);

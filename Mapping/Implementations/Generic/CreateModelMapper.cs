@@ -22,6 +22,11 @@ namespace DnDProject.Backend.Mapping.Implementations.Generic
             return m;
 
         }
+
+        public void mapViewModelToDataModel(ViewModel vm, DataModel m)
+        {
+            mapper.Map<ViewModel, DataModel>(vm, m);
+        }
         public CreateModelMapper()
         {
             var vm_To_m = new MapperConfiguration(

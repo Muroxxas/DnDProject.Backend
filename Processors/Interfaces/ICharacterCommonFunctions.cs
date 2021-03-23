@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DnDProject.Backend.Processors.Interfaces
 {
-    public interface ICharacterCommonFunctions
+    public interface ICharacterCommonFunctions : IThingExists
     {
         //Create
         void addHeldItemToDb(Guid Character_id, Guid Item_id);
@@ -20,11 +20,6 @@ namespace DnDProject.Backend.Processors.Interfaces
 
 
 
-        //Read
-        bool spellExists(Guid Spell_id);
-        bool playableClassExists(Guid class_id);
-        bool subclassExists(Guid subclass_id);
-        bool itemExists(Guid Item_id);
         bool spellCanBeCastByClass(Guid spell_id, Guid class_id);
 
 
